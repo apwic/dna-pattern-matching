@@ -1,9 +1,10 @@
 import React from 'react';
+import DNATestPage from '../ui/layout/DNATest';
 
 function DNATest() {
   return (
     <div className='dnatest'>
-      <h1>DNATest</h1>
+      <DNATestPage/>
     </div>
   );
 }

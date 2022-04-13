@@ -1,9 +1,10 @@
 import React from 'react';
+import HistoryPage from '../ui/layout/History';
 
 function History() {
   return (
     <div className='history'>
-      <h1>History</h1>
+      <HistoryPage/>
     </div>
   );
 }

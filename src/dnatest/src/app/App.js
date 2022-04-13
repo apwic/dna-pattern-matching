@@ -1,6 +1,7 @@
 import logo from '../logo.svg';
 import './App.css';
 import Navbar from '../components/Navbar';
+import SideBar from "../components/SideBar";
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Home from '../pages/Home';
 import DNATest from '../pages/DNATest';
@@ -21,16 +22,31 @@ function App() {
     //     </a>
     //   </header>
     // </div>
+
+    // Navbar
     <>
       <Router>
         <Navbar />
         <Routes>
-          <Route path='/' exact component={Home} />
-          <Route path='/DNATest' component={DNATest} />
-          <Route path='/History' component={History} />
+          <Route path='/' exact element={<Home/>} />
+          <Route path='/dnatest' element={<DNATest/>} />
+          <Route path='/history' element={<History/>} />
         </Routes>
       </Router>
     </>
+
+    // Sidebar with animation
+    // <>
+    //   <Router>
+    //     <SideBar>
+    //       <Routes>
+    //         <Route path='/' exact element={<Home/>} />
+    //         <Route path='/dnatest' element={<DNATest/>} />
+    //         <Route path='/history' element={<History/>} />
+    //       </Routes>
+    //     </SideBar>
+    //   </Router>
+    // </>
   );
 }
 
