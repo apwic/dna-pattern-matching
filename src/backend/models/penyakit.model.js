@@ -2,8 +2,8 @@ const sql = require("./db.js");
 
 // CONSTRUCTOR
 const Penyakit = function(penyakit){
-  this.nama = penyakit.nama;
-  this.sekuens = penyakit.sekuensl;
+  this.namapenyakit = penyakit.namapenyakit;
+  this.sekuens = penyakit.sekuens;
 }
 
 // CREATE AND INSERT INTO DB
@@ -35,8 +35,8 @@ Penyakit.getAll = (result) => {
 };
 
 // FIND BY NAME
-Penyakit.findByName = (nama, result) => {
-  sql.query(`SELECT * FROM Penyakit WHERE nama = ${nama}`, (err, res) => {
+Penyakit.findByName = (namapenyakit, result) => {
+  sql.query(`SELECT * FROM Penyakit WHERE namapenyakit = ${namapenyakit}`, (err, res) => {
     if (err) {
       console.log("error: ", err);
       result(err, null);
@@ -52,3 +52,5 @@ Penyakit.findByName = (nama, result) => {
     return({kind:"not_found"}, null);
   });
 };
+
+module.exports = Penyakit;

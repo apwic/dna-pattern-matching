@@ -2,7 +2,7 @@ const sql = require("./db.js");
 
 // CONSTRUCTOR
 const TesDNA = function(tesdna){
-  this.nama = tesdna.nama;
+  this.namapengguna = tesdna.namapengguna;
   this.penyakit = tesdna.penyakit;
   this.sekuens = tesdna.sekuens;
   this.status = tesdna.status;
@@ -24,6 +24,19 @@ TesDNA.create = (newTesDNA, result) => {
   });
 };
 
+// GET ALL
+TesDNA.getAll = (result) => {
+  sql.query("SELECT * FROM TesDNA", (err, res) => {
+    if (err) {
+      console.log("error: ", err);
+      result(null, err);
+      return;
+    }
+
+    console.log("TesDNA: ", res);
+    result(null, res);
+  });
+};
 
 // FIND BY Penyakit
 TesDNA.findByPenyakit = (penyakit, result) => {
@@ -81,3 +94,5 @@ TesDNA.findByPenyakitAndTanggal = (penyakit, tanggal, result) => {
     return({kind:"not_found"}, null);
   })
 }
+
+module.exports = TesDNA;

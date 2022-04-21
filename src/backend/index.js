@@ -20,7 +20,8 @@ app.get("/", (req, res) => {
   res.json({ message: "Welcome to application." });
 });
 
-// require("./app/routes/tutorial.routes.js")(app);
+require("./routes/tesdna.routes.js")(app);
+require("./routes/penyakit.routes.js")(app);
 
 // set port, listen for requests
 const PORT = process.env.PORT || 8080;
