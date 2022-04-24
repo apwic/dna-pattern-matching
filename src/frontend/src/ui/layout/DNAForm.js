@@ -1,13 +1,16 @@
+import { Box, Flex, Spacer, Heading, Image, position } from "@chakra-ui/react";
+
 import React, { Component } from "react";
 import {
   Textbox,
   Textarea,
   Radiobox,
-  Checkbox,
   Select
 } from "react-inputs-validation";
 import "react-inputs-validation/lib/react-inputs-validation.min.css";
 import "./Styles.css";
+import "react-responsive-modal/styles.css";
+import { Modal } from "react-responsive-modal";
 
 const technique_list = [
     { id: "KMP", name: "KMP" },
@@ -55,56 +58,39 @@ const technique_list = [
         alert("All validated!");
       }
     }
+
+    state = {
+        open: false
+      };
+    
+    onOpenModal = () => {
+    this.setState({ open: true });
+    };
+
+    onCloseModal = () => {
+    this.setState({ open: false });
+    };
   
     render() {
-      const { name, dnasequence, disease, technique, validate } = this.state;
-      const rowStyle = {
-        display: "flex",
-        alignItems: "flex-start",
-        justifyContent: "space-between",
-        padding: "2%",
-        fontSize: "14px"
-      };
-      const rowWrapperStyle = {
-        display: "table",
-        width: "100%"
-      };
-      const rowContainerStyle = {
-        display: "table-cell",
-        verticalAlign: "middle",
-        borderBottom: "1px solid #e5e5e5"
-      };
-      const labelStyle = {
-        display: "inline-block"
-      };
-      const labelContentStyle = {
-        verticalAlign: "middle"
-      };
+      const { name, dnasequence, disease, technique, validate, open } = this.state;
   
       return (
         <div
           style={{
-            minHeight: "1000px",
-            padding: "10px",
-            border: "1px solid #e5e5e5"
+            padding: "50px",
           }}
         >
           
           <form onSubmit={this.validateForm}>
-            <div style={rowWrapperStyle}>
-              <div style={rowContainerStyle}>
-                <div style={rowStyle}>
-                  <div
-                    style={{ ...labelStyle, flex: "3 3 0px", marginTop: "3px" }}
-                  >
-                    <span
-                      className="icon icon-person"
-                      style={{ ...labelContentStyle, fontSize: "20px" }}
-                    />
-                    &nbsp;
-                    <span style={labelContentStyle}>Name</span>
-                  </div>
-                  <div style={{ flex: "6 6 0px" }}>
+
+          <Flex
+                alignItems={"center"}
+                flexDirection={"row"}
+                marginX={"10%"}
+              >
+                <Box>
+                <h3>Name</h3>
+                <div>
                     <Textbox
                       attributesWrapper={{}}
                       attributesInput={{
@@ -138,27 +124,19 @@ const technique_list = [
                         name: "Name", // Optional.[String].Default: "". To display in the Error message. i.e Please enter your ${name}.
                         check: true, // Optional.[Bool].Default: true. To determin if you need to validate.
                         required: true // Optional.[Bool].Default: true. To determin if it is a required field.
-                      }}
+                      }} 
+                      style={{
+                        width: "30%"
+                    }}
                     />
-                  </div>
                 </div>
-              </div>
-            </div>
-  
-            <div style={rowWrapperStyle}>
-              <div style={rowContainerStyle}>
-                <div style={rowStyle}>
-                  <div
-                    style={{ ...labelStyle, flex: "3 3 0px", marginTop: "3px" }}
-                  >
-                    <span
-                      className="icon icon-bookmark"
-                      style={{ ...labelContentStyle, fontSize: "20px" }}
-                    />
-                    &nbsp;
-                    <span style={labelContentStyle}>Disease</span>
-                  </div>
-                  <div style={{ flex: "6 6 0px" }}>
+            </Box>
+
+            <Spacer size="lg"/>
+
+            <Box>
+                <h3 position = "fixed">Prediction</h3>
+                  <div>
                     <Select
                       attributesWrapper={{}}
                       attributesInput={{
@@ -183,6 +161,7 @@ const technique_list = [
                       customStyleContainer={{}} // Optional.[Object].Default: {}.
                       customStyleOptionListContainer={{
                         maxHeight: "200px",
+                        minWidth: "100%",
                         overflow: "auto",
                         fontSize: "14px"
                       }} // Optional.[Object].Default: {}.
@@ -197,28 +176,19 @@ const technique_list = [
                         check: true, // Optional.[Bool].Default: true. To determin if you need to validate.
                         required: true // Optional.[Bool].Default: true. To determin if it is a required field.
                       }}
+                      style={{
+                        width: "100%"
+                    }}
                     />
                   </div>
-                </div>
-              </div>
-            </div>
-  
-            <div style={rowWrapperStyle}>
-              <div style={rowContainerStyle}>
-                <div style={rowStyle}>
-                  <div
-                    style={{ ...labelStyle, flex: "3 3 0px", marginTop: "3px" }}
-                  >
-                    <span
-                      className="icon icon-person"
-                      style={{ ...labelContentStyle, fontSize: "20px" }}
-                    />
-                    &nbsp;
-                    <span style={labelContentStyle}>DNA Sequence</span>
-                  </div>
-                  <div style={{ flex: "6 6 0px" }}>
+            </Box>
+            
+            <Spacer size="lg"/>
+
+            <Box>
+                    <h3>DNA Sequence</h3>
+                  <div>
                     <Textarea
-                      attributesWrapper={{}}
                       attributesInput={{
                         id: "dnasequence",
                         name: "dnasequence",
@@ -234,12 +204,6 @@ const technique_list = [
                           validate: false
                         })
                       } // Optional.[Func].Default: none. Return the validation result.
-                      classNameInput="" // Optional.[String].Default: "".
-                      classNameWrapper="" // Optional.[String].Default: "".
-                      classNameContainer="" // Optional.[String].Default: "".
-                      customStyleInput={{}} // Optional.[Object].Default: {}.
-                      customStyleWrapper={{}} // Optional.[Object].Default: {}.
-                      customStyleContainer={{}} // Optional.[Object].Default: {}.
                       onChange={(dnasequence, e) => {
                         this.setState({ dnasequence });
                         console.log(e);
@@ -259,25 +223,157 @@ const technique_list = [
                       }}
                     />
                   </div>
-                </div>
-              </div>
-            </div>
+            </Box>
+
             
-            <div style={rowWrapperStyle}>
-            <div style={rowContainerStyle}>
-              <div style={rowStyle}>
-                <div
-                  style={{ ...labelStyle, flex: "3 3 0px", marginTop: "3px" }}
-                >
-                  {/*<div style={(labelStyle, { flex: '3 3 0px' })}>*/}
-                  <span
-                    className="icon icon-info"
-                    style={{ ...labelContentStyle, fontSize: "20px" }}
-                  />
-                  &nbsp;
-                  <span style={labelContentStyle}>Technique</span>
+            </Flex>
+
+            {/* <Box>
+                <h3>Name</h3>
+                <div>
+                    <Textbox
+                      attributesWrapper={{}}
+                      attributesInput={{
+                        id: "Name",
+                        name: "Name",
+                        type: "text",
+                        placeholder: "Write Your Name Here!"
+                      }}
+                      value={name} // Optional.[String].Default: "".
+                      disabled={false} // Optional.[Bool].Default: false.
+                      validate={validate} // Optional.[Bool].Default: false. If you have a submit button and trying to validate all the inputs of your form at onece, toggle it to true, then it will validate the field and pass the result via the "validationCallback" you provide.
+                      validationCallback={(res) =>
+                        this.setState({ hasNameError: res, validate: false })
+                      } // Optional.[Func].Default: none. Return the validation result.
+                      classNameInput="" // Optional.[String].Default: "".
+                      classNameWrapper="" // Optional.[String].Default: "".
+                      classNameContainer="" // Optional.[String].Default: "".
+                      customStyleInput={{}} // Optional.[Object].Default: {}.
+                      customStyleWrapper={{}} // Optional.[Object].Default: {}.
+                      customStyleContainer={{}} // Optional.[Object].Default: {}.
+                      onChange={(name, e) => {
+                        this.setState({ name });
+                        console.log(e);
+                      }} // Required.[Func].Default: () => {}. Will return the value.
+                      onBlur={(e) => {
+                        console.log(e);
+                      }} // Optional.[Func].Default: none. In order to validate the value on blur, you MUST provide a function, even if it is an empty function. Missing this, the validation on blur will not work.
+                      // onFocus={(e) => {console.log(e);}} // Optional.[Func].Default: none.
+                      // onClick={(e) => {console.log(e);}} // Optional.[Func].Default: none.
+                      validationOption={{
+                        name: "Name", // Optional.[String].Default: "". To display in the Error message. i.e Please enter your ${name}.
+                        check: true, // Optional.[Bool].Default: true. To determin if you need to validate.
+                        required: true // Optional.[Bool].Default: true. To determin if it is a required field.
+                      }} 
+                      style={{
+                        width: "30%"
+                    }}
+                    />
                 </div>
-                <div style={{ flex: "6 6 0px", display: "flex" }}>
+            </Box>
+  
+            <Spacer size="lg"/>
+
+            <Box>
+                <h3 position = "fixed">Prediction</h3>
+                  <div>
+                    <Select
+                      attributesWrapper={{}}
+                      attributesInput={{
+                        id: "country",
+                        name: "country"
+                      }}
+                      value={disease} // Optional.[String].Default: "".
+                      disabled={false} // Optional.[Bool].Default: false.
+                      showSearch={true}
+                      validate={validate} // Optional.[Bool].Default: false. If you have a submit button and trying to validate all the inputs of your form at onece, toggle it to true, then it will validate the field and pass the result via the "validationCallback" you provide.
+                      validationCallback={(res) =>
+                        this.setState({ hasDiseaseError: res, validate: false })
+                      } // Optional.[Func].Default: none. Return the validation result.
+                      optionList={disease_list} // Required.[Array of Object(s)].Default: [].
+                      classNameSelect="" // Optional.[String].Default: "".
+                      classNameWrapper="" // Optional.[String].Default: "".
+                      classNameContainer="" // Optional.[String].Default: "".
+                      classNameOptionListContainer="" // Optional.[String].Default: "".
+                      classNameOptionListItem="" // Optional.[String].Default: "".
+                      customStyleSelect={{}} // Optional.[Object].Default: {}.
+                      customStyleWrapper={{}} // Optional.[Object].Default: {}.
+                      customStyleContainer={{}} // Optional.[Object].Default: {}.
+                      customStyleOptionListContainer={{
+                      }} // Optional.[Object].Default: {}.
+                      customStyleOptionListItem={{}} // Optional.[Object].Default: {}.
+                      onChange={(res, e) => {
+                        this.setState({ disease: res.id });
+                        console.log(e);
+                      }} // Optional.[Func].Default: () => {}. Will return the value.
+                      onBlur={() => {}} // Optional.[Func].Default: none. In order to validate the value on blur, you MUST provide a function, even if it is an empty function. Missing this, the validation on blur will not work.
+                      validationOption={{
+                        name: "Disease", // Optional.[String].Default: "". To display in the Error message. i.e Please select a ${name}.
+                        check: true, // Optional.[Bool].Default: true. To determin if you need to validate.
+                        required: true // Optional.[Bool].Default: true. To determin if it is a required field.
+                      }}
+                    />
+                  </div>
+            </Box>
+  
+
+            <Spacer size="lg"/>
+
+            <Box>
+                    <h3>DNA Sequence</h3>
+                  <div>
+                    <Textarea
+                      attributesInput={{
+                        id: "dnasequence",
+                        name: "dnasequence",
+                        placeholder: "Write your DNA Sequence Here!"
+                      }}
+                      value={dnasequence} // Optional.[String].Default: "".
+                      disabled={false} // Optional.[Bool].Default: false.
+                      placeholder="Write your DNA Sequence Here!" // Optional.[String].Default: "".
+                      validate={validate} // Optional.[Bool].Default: false. If you have a submit button and trying to validate all the inputs of your form at onece, toggle it to true, then it will validate the field and pass the result via the "validationCallback" you provide.
+                      validationCallback={(res) =>
+                        this.setState({
+                          hasDnaseqError: res,
+                          validate: false
+                        })
+                      } // Optional.[Func].Default: none. Return the validation result.
+                      onChange={(dnasequence, e) => {
+                        this.setState({ dnasequence });
+                        console.log(e);
+                      }} // Required.[Func].Default: () => {}. Will return the value.
+                      onBlur={(e) => {
+                        console.log(e);
+                      }} // Optional.[Func].Default: none. In order to validate the value on blur, you MUST provide a function, even if it is an empty function. Missing this, the validation on blur will not work.
+                      // onFocus={(e) => {console.log(e);}} // Optional.[Func].Default: none.
+                      // onClick={(e) => {console.log(e);}} // Optional.[Func].Default: none.
+                      validationOption={{
+                        name: "DNA Sequence", // Optional.[String].Default: "". To display in the Error message. i.e Please enter your ${name}.
+                        check: true, // Optional.[Bool].Default: true. To determin if you need to validate.
+                        required: true, // Optional.[Bool].Default: true. To determin if it is a required field.
+                        type: "string", // Optional.[String].Default: "string". Validation type, options are ['string', 'number'].
+                        reg: /^[ACGT]+$/g,
+                        regMsg: "DNA Sequence must be composed of A, C, G, T"
+                      }}
+                    />
+                  </div>
+            </Box> */}
+            
+            {/* <Box align="center">
+                <button onClick={this.onOpenModal}>Open modal</button>
+                <Modal open={open} onClose={this.onCloseModal}>
+                <h2>Simple centered modal</h2>
+                <p>
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam
+                    pulvinar risus non risus hendrerit venenatis. Pellentesque sit amet
+                    hendrerit risus, sed porttitor quam.
+                </p>
+                </Modal>
+            </Box> */}
+
+            <Box marginTop= {"5vh"} align = "Center">
+                <h3>Technique</h3>
+                <div>
                   <Radiobox
                     attributesWrapper={{}}
                     attributesInputs={[
@@ -298,10 +394,10 @@ const technique_list = [
                     customStyleInput={{}} // Optional.[Object].Default: {}.
                     customStyleWrapper={{}} // Optional.[Object].Default: {}.
                     customStyleContainer={{
-                      display: "flex",
-                      justifyContent: "flex-start"
+                      justifyContent: "center",
+                      align: "center"
                     }} // Optional.[Object].Default: {}.
-                    customStyleOptionListItem={{ marginRight: "20px" }} // Optional.[Object].Default: {}.
+                    customStyleOptionListItem={{ marginLeft: "50vh", marginRight: "50vh" }} // Optional.[Object].Default: {}.
                     onChange={(technique, e) => {
                       this.setState({ technique });
                       console.log(e);
@@ -322,16 +418,17 @@ const technique_list = [
                     }}
                   />
                 </div>
-              </div>
-            </div>
-          </div>
+          </Box>
   
+
+
+
             <div style={{ height: "10px" }} />
             <div
-              className={`my-button my-button__red save-button`}
-              onClick={this.validateForm}
+              className={`my-button my-button__blue save-button`}
+              onClick={this.validateForm} align="Center" style={{ marginTop: "5vh" }}
             >
-              validate!
+              Submit
             </div>
             <input type="submit" style={{ display: "none" }} />
           </form>

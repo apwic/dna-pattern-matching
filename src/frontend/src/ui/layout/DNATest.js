@@ -4,6 +4,9 @@ import 'react-dropdown/style.css';
 import React, {useState} from "react";
 import { Input } from "semantic-ui-react";
 import './DNATest.css'
+import DNAForm from "./DNAForm";
+// import { Button, ButtonToolBar} from "react-bootstrap"
+import {addDiseaseModal} from "../../components/addDiseaseModal";
 
 function DNATestPage(){
   const [data, setData] = useState(null)
@@ -25,10 +28,7 @@ function DNATestPage(){
               <Heading>DNA Test</Heading>
             </Flex>
 
-            <Spacer size="lg" />
-            <Spacer size="lg" />
-
-            <form onSubmit={handleSubmit}>
+            {/* <form onSubmit={handleSubmit}>
               <Flex
                 alignItems={"center"}
                 flexDirection={"row"}
@@ -69,7 +69,11 @@ function DNATestPage(){
                 <button type="submit" color="#91ACCA">Submit</button>
               </Box>
 
-            </form>
+            </form> */}
+
+            <Box marginTop={"5vh"} align = "Center" marginLeft={"6vw"} width={"94vw"}>
+              <DNAForm/>
+            </Box>
         </div>
       );
 }
