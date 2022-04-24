@@ -1,6 +1,7 @@
 // Input
-let penyakit = "AGTCAACGTTGCATGTCGCATGATGCATGAGAGCT"
-let text = "ACGTTGCATGTCGCATGATACATGAGAGCT";
+let penyakit = "AGCAGCAGTAGTAGCTGATGCAT"
+let text = "ATGCA";
+// harusnya gt/at
 
 // Regex
 let pattern = /^[ACGT]+$/g;
@@ -22,7 +23,8 @@ function kmpMatch(text, pattern){
     while(i < n && j < m){
         if(text[i] == pattern[j]){
             if (j == m - 1){
-                return i - m + 1;
+                console.log("Pattern found at index " + (i - m + 1));
+                return 100;
             }
             i++;
             j++;
@@ -33,9 +35,14 @@ function kmpMatch(text, pattern){
         }
     }
     if(j == m){
-        return i - j;
+        console.log("Pattern found at index " + (i - j));
+        return 100;
     }else{
-        return -1;
+        console.log("Pattern not found");
+        m = text.length;
+        n = pattern.length;
+        let per = brute_levenshtein(text, pattern);
+        return per;
     }
 }
 
@@ -67,13 +74,14 @@ function boyerMooreMatch(text, pattern){
     var i = m-1;
     var j = m-1;
     var last = buildLast(pattern);
-    if (i > n-1){
+    if (i > m-1){
         return -1;
     }
     do {
         if (text[i] == pattern[j]){
             if (j == 0){
-                return i;
+                console.log("Pattern found at index " + (i));
+                return 100;
             }
             i--;
             j--;
@@ -83,7 +91,8 @@ function boyerMooreMatch(text, pattern){
             j = m - 1;
         }
     } while (i <= n-1 && j >= 0);
-    return -1;
+    let per = brute_levenshtein(text, pattern);
+    return per;
 }
 
 function buildLast(pattern){
@@ -97,16 +106,76 @@ function buildLast(pattern){
     return last;
 }
 
-let posn = kmpMatch(penyakit, text);
-if (posn == -1){
-    console.log("Not found");
-} else {
-    console.log("Found at " + posn);
+// Bonus (using Levenshtein)
+function levenshtein(S1, S2) {
+    var m = S1.length;
+    var n = S2.length;
+    var dp = Create2DArray(m+1);
+    for (var i = 0; i <= m; i++) {
+        dp[i][0] = i;
+    }
+    for (var j = 0; j <= n; j++) {
+        dp[0][j] = j;
+    }
+    var cost;
+    for (var i = 1; i <= m; i++) {
+        for (var j = 1; j <= n; j++) {
+            if (S1.charAt(i - 1) == S2.charAt(j - 1)) {
+                cost = 0;
+            } else {
+                cost = 1;
+            }
+            dp[i][j] = Math.min(dp[i - 1][j] + 1, dp[i][j - 1] + 1, dp[i - 1][j - 1] + cost);
+        }
+    }
+    return (m - dp[m][n]);
 }
 
+function brute_levenshtein(S1, S2) {
+    // Brute force + levenshtein
+    var m = S1.length;
+    var n = S2.length;
+    var temp;
+    var lcs = 0;
+    for (var i = 0; i <= m-n; i++) {
+        temp = levenshtein(S1.substring(i, i+n), S2);
+        console.log(S1.substring(i, i+n) + " : " + S2 + " = " + temp);
+        if (temp > lcs) {
+            lcs = temp;
+            console.log("LCS : " + S1.substring(i, i+n));
+        }
+    }
+    return (lcs/n)*100;
+}
+
+S1 = penyakit
+S2 = text
+m = S1.length
+n = S2.length
+
+let posn = kmpMatch(penyakit, text);
+console.log("Percentage of similarity: " + posn);
+// if (posn == -1){
+//     console.log("Not found");
+// } else {
+//     console.log("Found at " + posn);
+// }
+
 posn = boyerMooreMatch(penyakit, text);
-if (posn == -1){
-    console.log("Not found");
-} else {
-    console.log("Found at " + posn);
+console.log("Percentage of similarity: " + posn);
+// if (posn == -1){
+//     console.log("Not found");
+// } else {
+//     console.log("Found at " + posn);
+// }
+
+// Implement Bonus
+function Create2DArray(rows) {
+    var arr = [];
+  
+    for (var i=0;i<rows;i++) {
+       arr[i] = [];
+    }
+  
+    return arr;
 }
