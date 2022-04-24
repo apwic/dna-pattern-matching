@@ -8,7 +8,6 @@ import { IconContext } from 'react-icons';
 
 function Navbar() {
   const [sidebar, setSidebar] = useState(false);
-
   const showSidebar = () => setSidebar(!sidebar);
   
   let iconStyles = { color: "#f8f2ed", fontSize: "1.5em" };
