@@ -1,12 +1,22 @@
-import { Box, Flex, Spacer, Heading, Image } from "@chakra-ui/react";
+import { Box, Flex, Spacer, Heading, Image, VStack } from "@chakra-ui/react";
 import React from "react";
+import HistoryStack from '../../components/HistoryStack';
+import Search from '../../components/Search';
 
 function HistoryPage(){
-    return (
-        <div className='history'>
-          <Heading>History</Heading>
-        </div>
-      );
+  return (
+    <VStack p={4}>
+      <Heading
+      mb='8'
+      fontWeight='extrabold'
+      size='2xl'
+      >
+        HISTORY
+      </Heading>
+      <Search/>
+      <HistoryStack/>
+    </VStack>
+  );
 }
 
 export default HistoryPage;
