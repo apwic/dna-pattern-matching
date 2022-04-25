@@ -9,6 +9,7 @@ import {
 } from "react-inputs-validation";
 import "react-inputs-validation/lib/react-inputs-validation.min.css";
 import "./Styles.css";
+import "./DNATest.css";
 // import "react-responsive-modal/styles.css";
 // import { Modal } from "react-responsive-modal";
 import FileUploader from "../../components/FileUpload";
@@ -19,6 +20,7 @@ import FileUploader from "../../components/FileUpload";
   ];
   
   const disease_list = [
+    { id: "", name: "Select a disease" },
     { id: "HIV", name: "HIV" },
     { id: "Penyakit1", name: "Penyakit1" },
     { id: "Penyakit2", name: "Penyakit2" },
@@ -83,66 +85,94 @@ import FileUploader from "../../components/FileUpload";
         >
           
           <form onSubmit={this.validateForm}>
-
-          <Flex
+          
+          {/* <Flex
                 alignItems={"center"}
                 flexDirection={"row"}
                 marginX={"10%"}
               >
-                <Box>
                 <h3>Name</h3>
-                <div>
-                    <Textbox
-                      attributesWrapper={{}}
-                      attributesInput={{
-                        id: "Name",
-                        name: "Name",
-                        type: "text",
-                        placeholder: "Write Your Name Here!"
+                <Spacer />
+                <h3>Prediction</h3>
+                <Spacer />
+                <h3>DNA Sequence</h3>
+              </Flex> */}
+
+
+          <div class="container">
+                <div class="item" position="fixed">             
+                <Box fontWeight={"bold"} fontSize="15pt" marginBottom={"1vh"} letterSpacing="1pt">
+                      Name
+                    </Box>
+                  <div>
+                      <Textbox
+                        attributesWrapper={{}}
+                        attributesInput={{
+                          id: "Name",
+                          name: "Name",
+                          type: "text",
+                          placeholder: "Write Your Name Here!"
+                        }}
+                        value={name} // Optional.[String].Default: "".
+                        disabled={false} // Optional.[Bool].Default: false.
+                        validate={validate} // Optional.[Bool].Default: false. If you have a submit button and trying to validate all the inputs of your form at onece, toggle it to true, then it will validate the field and pass the result via the "validationCallback" you provide.
+                        validationCallback={(res) =>
+                          this.setState({ hasNameError: res, validate: false })
+                        } // Optional.[Func].Default: none. Return the validation result.
+                        classNameInput="" // Optional.[String].Default: "".
+                        classNameWrapper="" // Optional.[String].Default: "".
+                        classNameContainer="" // Optional.[String].Default: "".
+                        customStyleInput={{
+                          border:"2px solid #BBC8D4", 
+                          borderRadius:"15px", 
+                          padding:"0.5px", 
+                          width:"100%", 
+                          minWidth:"20vw", 
+                          maxWidth:"20vw",
+                          height:"100%",
+                          minHeight:"6vh",
+                          maxHeight:"6vh",
+                          textAlign:"center",
+                          fontSize:"12pt"
+                        }} // Optional.[Object].Default: {}.
+                        customStyleWrapper={{}} // Optional.[Object].Default: {}.
+                        customStyleContainer={{
+                          // width: "100%",
+                          // minWidth: "15vw",
+                          // maxWidth: "15vw",
+                        }} // Optional.[Object].Default: {}.
+                        onChange={(name, e) => {
+                          this.setState({ name });
+                          console.log(e);
+                        }} // Required.[Func].Default: () => {}. Will return the value.
+                        onBlur={(e) => {
+                          console.log(e);
+                        }} // Optional.[Func].Default: none. In order to validate the value on blur, you MUST provide a function, even if it is an empty function. Missing this, the validation on blur will not work.
+                        // onFocus={(e) => {console.log(e);}} // Optional.[Func].Default: none.
+                        // onClick={(e) => {console.log(e);}} // Optional.[Func].Default: none.
+                        validationOption={{
+                          name: "Name", // Optional.[String].Default: "". To display in the Error message. i.e Please enter your ${name}.
+                          check: true, // Optional.[Bool].Default: true. To determin if you need to validate.
+                          required: true // Optional.[Bool].Default: true. To determin if it is a required field.
+                        }} 
+                        style={{
                       }}
-                      value={name} // Optional.[String].Default: "".
-                      disabled={false} // Optional.[Bool].Default: false.
-                      validate={validate} // Optional.[Bool].Default: false. If you have a submit button and trying to validate all the inputs of your form at onece, toggle it to true, then it will validate the field and pass the result via the "validationCallback" you provide.
-                      validationCallback={(res) =>
-                        this.setState({ hasNameError: res, validate: false })
-                      } // Optional.[Func].Default: none. Return the validation result.
-                      classNameInput="" // Optional.[String].Default: "".
-                      classNameWrapper="" // Optional.[String].Default: "".
-                      classNameContainer="" // Optional.[String].Default: "".
-                      customStyleInput={{}} // Optional.[Object].Default: {}.
-                      customStyleWrapper={{}} // Optional.[Object].Default: {}.
-                      customStyleContainer={{}} // Optional.[Object].Default: {}.
-                      onChange={(name, e) => {
-                        this.setState({ name });
-                        console.log(e);
-                      }} // Required.[Func].Default: () => {}. Will return the value.
-                      onBlur={(e) => {
-                        console.log(e);
-                      }} // Optional.[Func].Default: none. In order to validate the value on blur, you MUST provide a function, even if it is an empty function. Missing this, the validation on blur will not work.
-                      // onFocus={(e) => {console.log(e);}} // Optional.[Func].Default: none.
-                      // onClick={(e) => {console.log(e);}} // Optional.[Func].Default: none.
-                      validationOption={{
-                        name: "Name", // Optional.[String].Default: "". To display in the Error message. i.e Please enter your ${name}.
-                        check: true, // Optional.[Bool].Default: true. To determin if you need to validate.
-                        required: true // Optional.[Bool].Default: true. To determin if it is a required field.
-                      }} 
-                      style={{
-                        width: "30%"
-                    }}
-                    />
-                </div>
-            </Box>
+                      />
+                  </div>
+                </div>   
 
             <Spacer size="lg"/>
 
-            <Box>
-                <h3 position = "fixed">Prediction</h3>
+            <div class="item" position="fixed"> 
+            <Box fontWeight={"bold"} fontSize="15pt" marginBottom={"1vh"} letterSpacing="1pt">
+                      Prediction
+                    </Box>
                   <div>
                     <Select
                       attributesWrapper={{}}
                       attributesInput={{
-                        id: "country",
-                        name: "country"
+                        id: "disease",
+                        name: "disease"
                       }}
                       value={disease} // Optional.[String].Default: "".
                       disabled={false} // Optional.[Bool].Default: false.
@@ -157,17 +187,42 @@ import FileUploader from "../../components/FileUpload";
                       classNameContainer="" // Optional.[String].Default: "".
                       classNameOptionListContainer="" // Optional.[String].Default: "".
                       classNameOptionListItem="" // Optional.[String].Default: "".
-                      customStyleSelect={{}} // Optional.[Object].Default: {}.
-                      customStyleWrapper={{}} // Optional.[Object].Default: {}.
+                      customStyleSelect={{
+                        fontSize:"12pt",
+                        textAlign:"center"
+                      }} // Optional.[Object].Default: {}.
+                      customStyleWrapper={{
+                        fontSize:"12pt",
+                        textAlign:"center"
+                      }} // Optional.[Object].Default: {}.
                       customStyleContainer={{
-                        minWidth: "200px"
+                        // width: "100%",
+                        // minWidth: "200px",
+                        // maxWidth: "200px",
+                        // border:"2px solid #BBC8D4", 
+                        // borderRadius:"20px",
+                        border:"2px solid #BBC8D4", 
+                        borderRadius:"15px", 
+                        padding:"0.5px", 
+                        width:"100%", 
+                        minWidth:"20vw", 
+                        maxWidth:"20vw",
+                        height:"100%",
+                        minHeight:"6vh",
+                        maxHeight:"6vh",
+                        fontSize:"12pt",
+                        textAlign:"center"
+                        
                       }} // Optional.[Object].Default: {}.
                       customStyleOptionListContainer={{
-                        maxHeight: "200px",
-                        overflow: "auto",
-                        fontSize: "14px"
+                        // overflow: "auto",
+                        fontSize:"12pt",
+                        textAlign:"center",
                       }} // Optional.[Object].Default: {}.
-                      customStyleOptionListItem={{}} // Optional.[Object].Default: {}.
+                      customStyleOptionListItem={{
+                        fontSize:"12pt",
+                        textAlign:"center"
+                      }} // Optional.[Object].Default: {}.
                       onChange={(res, e) => {
                         this.setState({ disease: res.id });
                         console.log(e);
@@ -179,21 +234,27 @@ import FileUploader from "../../components/FileUpload";
                         required: true // Optional.[Bool].Default: true. To determin if it is a required field.
                       }}
                       style={{
-                        width: "100%"
                     }}
                     />
                   </div>
-            </Box>
+                  <Box fontWeight={"light"} fontSize="10pt">
+                    Disease not found? Add one
+                  </Box>
+            </div>
             
             <Spacer size="lg"/>
 
-            <Box>
-                    <h3>DNA Sequence</h3>
-                    <FileUploader/>
-            </Box>
+            <div class="item" position="fixed"> 
+            <Box fontWeight={"bold"} fontSize="15pt" marginBottom={"1vh"} letterSpacing="1pt">
+                      DNA Sequence
+                    </Box>
+                    <div style={{border:"2px solid #BBC8D4", borderRadius:"15px", padding:"0.1px", width:"100%", minWidth:"20vw", maxWidth:"20vw"}}>
+                      <FileUploader/>
+                    </div>
+            </div>
 
             
-            </Flex>
+            </div>
 
             {/* <Box>
                 <h3>Name</h3>
@@ -336,7 +397,9 @@ import FileUploader from "../../components/FileUpload";
             </Box> */}
 
             <Box marginTop= {"5vh"} align = "Center">
-                <h3>Technique</h3>
+                <Box fontWeight={"bold"} fontSize="15pt" marginBottom={"1vh"} letterSpacing="1pt">
+                  Technique
+                </Box>
                 <div>
                   <Radiobox
                     attributesWrapper={{}}
@@ -359,7 +422,7 @@ import FileUploader from "../../components/FileUpload";
                     customStyleWrapper={{}} // Optional.[Object].Default: {}.
                     customStyleContainer={{
                       justifyContent: "center",
-                      align: "center"
+                      align: "center",
                     }} // Optional.[Object].Default: {}.
                     customStyleOptionListItem={{ marginLeft: "50vh", marginRight: "50vh" }} // Optional.[Object].Default: {}.
                     onChange={(technique, e) => {
@@ -390,7 +453,7 @@ import FileUploader from "../../components/FileUpload";
             <div style={{ height: "10px" }} />
             <div
               className={`my-button my-button__blue save-button`}
-              onClick={this.validateForm} align="Center" style={{ marginTop: "5vh", maxWidth: "20vh", borderRadius: "15px"}}
+              onClick={this.validateForm} align="Center" style={{ marginTop: "5vh", maxWidth: "20vh", borderRadius: "15px", fontWeight: "bold", letterSpacing: "1px" }}
             >
               Submit
             </div>

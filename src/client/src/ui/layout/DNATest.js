@@ -24,7 +24,7 @@ function DNATestPage(){
   
   return (
         <div className='dnatest'>
-            <Flex align="center" justify="center" style={{height : "20vh", width : "95vw", marginLeft : "5vw", backgroundColor : "#E1E5F1"}}>
+            <Flex align="center" justify="center" style={{height : "20vh", width : "94vw", marginLeft : "6vw", backgroundColor : "#E1E5F1"}}>
               <Heading>DNA Test</Heading>
             </Flex>
             {/* <Box align="center" justify="center" style={{height : "20vh", width : "94vw", marginLeft : "5vw", marginTop: "0px", backgroundColor : "#E1E5F1"}}>

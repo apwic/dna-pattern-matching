@@ -1,4 +1,39 @@
-.flexbox-container {
+body {
+    padding: 20px;
+    font: 1em;
+    font-family: 'Akshar', sans-serif;
+    font-family: 'Poppins', sans-serif;
+  }
+  
+  * {box-sizing: border-box;}
+  
+  p {
+    margin: 0 0 1em 0;
+  }
+
+  .font-link {
+    font-family: 'Poppins', cursive;
+  }
+  
+  .container {
+    margin-left: 3vw;
+    font-family: 'Akshar', sans-serif;
+    font-family: 'Poppins', sans-serif;
+    margin-right: 7vw;
+    border: 0px solid rgb(111,41,97);
+    border-radius: .5em;
+    padding: 10px;
     display: flex;
-    flex-direction: row;
-}
+    justify-content: space-between;
+  }
+
+  .item {
+    width: "100%";
+    min-width: "27vw";
+    max-width: "27vw";
+    font-family: 'Akshar', sans-serif;
+    font-family: 'Poppins', sans-serif;
+    padding: 10px;
+    /* background-color: rgba(111,41,97,.3);
+    border: 2px solid rgba(111,41,97,.5); */
+  }
