@@ -1,18 +1,3 @@
-// Input
-let penyakit = "AGCAGCAGTAGTAGCTGATGCAT"
-let text = "ATGCA";
-// harusnya gt/at
-
-// Regex
-let pattern = /^[ACGT]+$/g;
-let result = text.match(pattern);
-if (result != null && result[0].length == text.length) {
-    console.log("ACGT");
-    console.log(result);
-} else {
-    console.log("Not ACGT");
-}
-
 // KMP Algorithm
 function kmpMatch(text, pattern){
     var n = text.length;
@@ -148,34 +133,17 @@ function brute_levenshtein(S1, S2) {
     return (lcs/n)*100;
 }
 
-S1 = penyakit
-S2 = text
-m = S1.length
-n = S2.length
-
-let posn = kmpMatch(penyakit, text);
-console.log("Percentage of similarity: " + posn);
-// if (posn == -1){
-//     console.log("Not found");
-// } else {
-//     console.log("Found at " + posn);
-// }
-
-posn = boyerMooreMatch(penyakit, text);
-console.log("Percentage of similarity: " + posn);
-// if (posn == -1){
-//     console.log("Not found");
-// } else {
-//     console.log("Found at " + posn);
-// }
-
-// Implement Bonus
+// // Implement Bonus
 function Create2DArray(rows) {
     var arr = [];
   
     for (var i=0;i<rows;i++) {
-       arr[i] = [];
+      arr[i] = [];
     }
   
     return arr;
 }
+
+module.exports = {
+  kmpMatch, boyerMooreMatch,
+};

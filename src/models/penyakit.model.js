@@ -36,7 +36,7 @@ Penyakit.getAll = (result) => {
 
 // FIND BY NAME
 Penyakit.findByName = (namapenyakit, result) => {
-  sql.query(`SELECT * FROM Penyakit WHERE namapenyakit = ${namapenyakit}`, (err, res) => {
+  sql.query(`SELECT * FROM Penyakit WHERE namapenyakit = ?`, [namapenyakit], (err, res) => {
     if (err) {
       console.log("error: ", err);
       result(err, null);
@@ -45,11 +45,12 @@ Penyakit.findByName = (namapenyakit, result) => {
 
     if (res.length){
       console.log("found " + res.length + " Penyakit" );
-      return(null, res);
+      result(null, res);
+      return;
     }
 
     // not found Penyakit by nama
-    return({kind:"not_found"}, null);
+    result({kind:"not_found"}, null);
   });
 };
 
