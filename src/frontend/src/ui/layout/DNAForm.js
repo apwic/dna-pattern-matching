@@ -11,6 +11,7 @@ import "react-inputs-validation/lib/react-inputs-validation.min.css";
 import "./Styles.css";
 import "react-responsive-modal/styles.css";
 import { Modal } from "react-responsive-modal";
+import FileUploader from "../../components/FileUpload";
 
 const technique_list = [
     { id: "KMP", name: "KMP" },
@@ -34,11 +35,11 @@ const technique_list = [
       super(props);
       this.state = {
         name: "",
-        dnasequence: "",
+        // dnasequence: "",
         disease: "",
         technique: "",
         hasNameError: true,
-        hasDnaseqError: true,
+        // hasDnaseqError: true,
         hasDiseaseError: true,
         hasTechniqueError:true,
         validate: false
@@ -53,8 +54,8 @@ const technique_list = [
     validateForm(e) {
       e.preventDefault();
       this.toggleValidating(true);
-      const { hasNameError, hasDnaseqError, hasDiseaseError, hasTechniqueError } = this.state;
-      if (!hasNameError && !hasDnaseqError && !hasDiseaseError && !hasTechniqueError) {
+      const { hasNameError, hasDiseaseError, hasTechniqueError } = this.state;
+      if (!hasNameError && !hasDiseaseError && !hasTechniqueError) {
         alert("All validated!");
       }
     }
@@ -72,7 +73,7 @@ const technique_list = [
     };
   
     render() {
-      const { name, dnasequence, disease, technique, validate, open } = this.state;
+      const { name, disease, technique, validate, open } = this.state;
   
       return (
         <div
@@ -158,10 +159,11 @@ const technique_list = [
                       classNameOptionListItem="" // Optional.[String].Default: "".
                       customStyleSelect={{}} // Optional.[Object].Default: {}.
                       customStyleWrapper={{}} // Optional.[Object].Default: {}.
-                      customStyleContainer={{}} // Optional.[Object].Default: {}.
+                      customStyleContainer={{
+                        minWidth: "200px"
+                      }} // Optional.[Object].Default: {}.
                       customStyleOptionListContainer={{
                         maxHeight: "200px",
-                        minWidth: "100%",
                         overflow: "auto",
                         fontSize: "14px"
                       }} // Optional.[Object].Default: {}.
@@ -187,42 +189,7 @@ const technique_list = [
 
             <Box>
                     <h3>DNA Sequence</h3>
-                  <div>
-                    <Textarea
-                      attributesInput={{
-                        id: "dnasequence",
-                        name: "dnasequence",
-                        placeholder: "Write your DNA Sequence Here!"
-                      }}
-                      value={dnasequence} // Optional.[String].Default: "".
-                      disabled={false} // Optional.[Bool].Default: false.
-                      placeholder="Write your DNA Sequence Here!" // Optional.[String].Default: "".
-                      validate={validate} // Optional.[Bool].Default: false. If you have a submit button and trying to validate all the inputs of your form at onece, toggle it to true, then it will validate the field and pass the result via the "validationCallback" you provide.
-                      validationCallback={(res) =>
-                        this.setState({
-                          hasDnaseqError: res,
-                          validate: false
-                        })
-                      } // Optional.[Func].Default: none. Return the validation result.
-                      onChange={(dnasequence, e) => {
-                        this.setState({ dnasequence });
-                        console.log(e);
-                      }} // Required.[Func].Default: () => {}. Will return the value.
-                      onBlur={(e) => {
-                        console.log(e);
-                      }} // Optional.[Func].Default: none. In order to validate the value on blur, you MUST provide a function, even if it is an empty function. Missing this, the validation on blur will not work.
-                      // onFocus={(e) => {console.log(e);}} // Optional.[Func].Default: none.
-                      // onClick={(e) => {console.log(e);}} // Optional.[Func].Default: none.
-                      validationOption={{
-                        name: "DNA Sequence", // Optional.[String].Default: "". To display in the Error message. i.e Please enter your ${name}.
-                        check: true, // Optional.[Bool].Default: true. To determin if you need to validate.
-                        required: true, // Optional.[Bool].Default: true. To determin if it is a required field.
-                        type: "string", // Optional.[String].Default: "string". Validation type, options are ['string', 'number'].
-                        reg: /^[ACGT]+$/g,
-                        regMsg: "DNA Sequence must be composed of A, C, G, T"
-                      }}
-                    />
-                  </div>
+                    <FileUploader/>
             </Box>
 
             
@@ -273,7 +240,6 @@ const technique_list = [
             </Box>
   
             <Spacer size="lg"/>
-
             <Box>
                 <h3 position = "fixed">Prediction</h3>
                   <div>
@@ -316,9 +282,7 @@ const technique_list = [
                   </div>
             </Box>
   
-
             <Spacer size="lg"/>
-
             <Box>
                     <h3>DNA Sequence</h3>
                   <div>
@@ -426,7 +390,7 @@ const technique_list = [
             <div style={{ height: "10px" }} />
             <div
               className={`my-button my-button__blue save-button`}
-              onClick={this.validateForm} align="Center" style={{ marginTop: "5vh" }}
+              onClick={this.validateForm} align="Center" style={{ marginTop: "5vh", maxWidth: "20vh", borderRadius: "15px"}}
             >
               Submit
             </div>
