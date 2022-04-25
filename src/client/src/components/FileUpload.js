@@ -4,11 +4,16 @@ import styled from 'styled-components';
 
 const Button = styled.button`
   /* Insert your favorite CSS code to style a button */
-    background-color: #FFFFF;
+    background-color: #012B39;
     border-radius: 13px;
-    border: 2px solid #91ACCA;
+    padding: 5px;
+    border: 2px solid #012B39;
     text-align: center;
-    font-size: 1em;
+    text-color: #FFFFFF;
+    font-size: 10pt;
+    font-weight: bold;
+    letterSpacing: 2pt;
+    color: #FFFFFF;
     margin: 4px 3px;
   `;
 
@@ -38,7 +43,7 @@ const FileUploader = props => {
 
   return (
     <Fragment>
-      <label style={{border: "1px"}} className="file-label" htmlFor='customFile'>
+      <label style={{border: "1px", width:"100%", minWidth:"20vw", maxWidth:"20vw"}} className="file-label" htmlFor='customFile'>
         {filename}
       </label>
       <Button onClick={handleClick}>
@@ -50,7 +55,8 @@ const FileUploader = props => {
              id="customFile"
              onChange={handleChange}
              style={{display:'none'}} 
-      /> 
+      />
+
     </Fragment>
   );
 };
