@@ -9,11 +9,11 @@ import {
 } from "react-inputs-validation";
 import "react-inputs-validation/lib/react-inputs-validation.min.css";
 import "./Styles.css";
-import "react-responsive-modal/styles.css";
-import { Modal } from "react-responsive-modal";
+// import "react-responsive-modal/styles.css";
+// import { Modal } from "react-responsive-modal";
 import FileUploader from "../../components/FileUpload";
 
-const technique_list = [
+  const technique_list = [
     { id: "KMP", name: "KMP" },
     { id: "Bayer-Moore", name: "Bayer-Moore" }
   ];

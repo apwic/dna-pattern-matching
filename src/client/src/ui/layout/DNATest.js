@@ -1,8 +1,8 @@
 import { Box, Flex, Spacer, Heading, Image, position } from "@chakra-ui/react";
-import Dropdown from 'react-dropdown';
-import 'react-dropdown/style.css';
+// import Dropdown from 'react-dropdown';
+// import 'react-dropdown/style.css';
 import React, {useState} from "react";
-import { Input } from "semantic-ui-react";
+// import { Input } from "semantic-ui-react";
 import './DNATest.css'
 import DNAForm from "./DNAForm";
 // import { Button, ButtonToolBar} from "react-bootstrap"
