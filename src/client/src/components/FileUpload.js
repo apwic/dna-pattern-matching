@@ -2,6 +2,7 @@ import { Box, Flex, Spacer, Heading, Image, position } from "@chakra-ui/react";
 import React ,{useState, Fragment} from 'react';
 import styled from 'styled-components';
 
+// Style Button
 const Button = styled.button`
   /* Insert your favorite CSS code to style a button */
     background-color: #012B39;
@@ -17,12 +18,13 @@ const Button = styled.button`
     margin: 4px 3px;
   `;
 
+
 const FileUploader = props => {
+
   const hiddenFileInput = React.useRef(null);
-  
-  const [file, setFile] = useState('');
+  const [setFile] = useState('');
   const [filename, setFilename] = useState('Choose File');
-  const [uploadedFile, setUploadedFile] = useState({});
+  const [setUploadedFile] = useState({});
 
   const handleClick = event => {
     hiddenFileInput.current.click();
@@ -44,9 +46,12 @@ const FileUploader = props => {
   return (
     <Fragment>
       <Flex>
+        {/** Label Penulisan (ini masih perlu dibenerin) */}
         <label style={{marginTop:"5pt", border: "1px", width:"100%", minWidth:"15vw", maxWidth:"15vw", height:"100%", minHeight:"1vh", maxHeight:"1vh"}} className="file-label" htmlFor='customFile'>
           {filename}
         </label>
+
+        {/** Button Upload */}
         <Button onClick={handleClick}>
           Upload
         </Button>
@@ -62,4 +67,5 @@ const FileUploader = props => {
     </Fragment>
   );
 };
+
 export default FileUploader;

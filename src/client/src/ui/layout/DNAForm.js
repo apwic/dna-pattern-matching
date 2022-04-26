@@ -10,8 +10,6 @@ import {
 import "react-inputs-validation/lib/react-inputs-validation.min.css";
 import "./Styles.css";
 import "./DNATest.css";
-// import "react-responsive-modal/styles.css";
-// import { Modal } from "react-responsive-modal";
 import FileUploader from "../../components/FileUpload";
 
   const technique_list = [
@@ -85,25 +83,14 @@ import FileUploader from "../../components/FileUpload";
         >
           
           <form onSubmit={this.validateForm}>
-          
-          {/* <Flex
-                alignItems={"center"}
-                flexDirection={"row"}
-                marginX={"10%"}
-              >
-                <h3>Name</h3>
-                <Spacer />
-                <h3>Prediction</h3>
-                <Spacer />
-                <h3>DNA Sequence</h3>
-              </Flex> */}
-
 
           <div class="container">
-                <div class="item" position="fixed">             
-                <Box fontWeight={"bold"} fontSize="15pt" marginBottom={"1vh"} letterSpacing="1pt">
-                      Name
-                    </Box>
+
+                <div class="item" position="fixed">
+
+                  <Box fontWeight={"bold"} fontSize="15pt" marginBottom={"1vh"} letterSpacing="1pt">
+                    Name
+                  </Box>
                   <div>
                       <Textbox
                         attributesWrapper={{}}
@@ -148,8 +135,6 @@ import FileUploader from "../../components/FileUpload";
                         onBlur={(e) => {
                           console.log(e);
                         }} // Optional.[Func].Default: none. In order to validate the value on blur, you MUST provide a function, even if it is an empty function. Missing this, the validation on blur will not work.
-                        // onFocus={(e) => {console.log(e);}} // Optional.[Func].Default: none.
-                        // onClick={(e) => {console.log(e);}} // Optional.[Func].Default: none.
                         validationOption={{
                           name: "Name", // Optional.[String].Default: "". To display in the Error message. i.e Please enter your ${name}.
                           check: true, // Optional.[Bool].Default: true. To determin if you need to validate.
@@ -161,109 +146,97 @@ import FileUploader from "../../components/FileUpload";
                   </div>
                 </div>   
 
-            <Spacer size="lg"/>
+                <Spacer size="lg"/>
 
-            <div class="item" position="fixed"> 
-            <Box fontWeight={"bold"} fontSize="15pt" marginBottom={"1vh"} letterSpacing="1pt">
-                      Prediction
-                    </Box>
+                <div class="item" position="fixed"> 
+                  <Box fontWeight={"bold"} fontSize="15pt" marginBottom={"1vh"} letterSpacing="1pt">
+                    Prediction
+                  </Box>
                   <div>
-                    <Select
-                      attributesWrapper={{}}
-                      attributesInput={{
-                        id: "disease",
-                        name: "disease"
+                      <Select
+                        attributesWrapper={{}}
+                        attributesInput={{
+                          id: "disease",
+                          name: "disease"
+                        }}
+                        value={disease} // Optional.[String].Default: "".
+                        disabled={false} // Optional.[Bool].Default: false.
+                        showSearch={true}
+                        validate={validate} // Optional.[Bool].Default: false. If you have a submit button and trying to validate all the inputs of your form at onece, toggle it to true, then it will validate the field and pass the result via the "validationCallback" you provide.
+                        validationCallback={(res) =>
+                          this.setState({ hasDiseaseError: res, validate: false })
+                        } // Optional.[Func].Default: none. Return the validation result.
+                        optionList={disease_list} // Required.[Array of Object(s)].Default: [].
+                        classNameSelect="" // Optional.[String].Default: "".
+                        classNameWrapper="" // Optional.[String].Default: "".
+                        classNameContainer="" // Optional.[String].Default: "".
+                        classNameOptionListContainer="" // Optional.[String].Default: "".
+                        classNameOptionListItem="" // Optional.[String].Default: "".
+                        customStyleSelect={{
+                          fontSize:"12pt",
+                          textAlign:"center"
+                        }} // Optional.[Object].Default: {}.
+                        customStyleWrapper={{
+                          fontSize:"12pt",
+                          textAlign:"center"
+                        }} // Optional.[Object].Default: {}.
+                        customStyleContainer={{
+                          // width: "100%",
+                          // minWidth: "200px",
+                          // maxWidth: "200px",
+                          // border:"2px solid #BBC8D4", 
+                          // borderRadius:"20px",
+                          border:"2px solid #BBC8D4", 
+                          borderRadius:"15px", 
+                          padding:"0.5px", 
+                          width:"100%", 
+                          minWidth:"20vw", 
+                          maxWidth:"20vw",
+                          height:"100%",
+                          minHeight:"7vh",
+                          maxHeight:"7vh",
+                          fontSize:"12pt",
+                          textAlign:"center"
+                          
+                        }} // Optional.[Object].Default: {}.
+                        customStyleOptionListContainer={{
+                          // overflow: "auto",
+                          fontSize:"12pt",
+                          textAlign:"center",
+                        }} // Optional.[Object].Default: {}.
+                        customStyleOptionListItem={{
+                          fontSize:"12pt",
+                          textAlign:"center"
+                        }} // Optional.[Object].Default: {}.
+                        onChange={(res, e) => {
+                          this.setState({ disease: res.id });
+                          console.log(e);
+                        }} // Optional.[Func].Default: () => {}. Will return the value.
+                        onBlur={() => {}} // Optional.[Func].Default: none. In order to validate the value on blur, you MUST provide a function, even if it is an empty function. Missing this, the validation on blur will not work.
+                        validationOption={{
+                          name: "Disease", // Optional.[String].Default: "". To display in the Error message. i.e Please select a ${name}.
+                          check: true, // Optional.[Bool].Default: true. To determin if you need to validate.
+                          required: true // Optional.[Bool].Default: true. To determin if it is a required field.
+                        }}
+                        style={{
                       }}
-                      value={disease} // Optional.[String].Default: "".
-                      disabled={false} // Optional.[Bool].Default: false.
-                      showSearch={true}
-                      validate={validate} // Optional.[Bool].Default: false. If you have a submit button and trying to validate all the inputs of your form at onece, toggle it to true, then it will validate the field and pass the result via the "validationCallback" you provide.
-                      validationCallback={(res) =>
-                        this.setState({ hasDiseaseError: res, validate: false })
-                      } // Optional.[Func].Default: none. Return the validation result.
-                      optionList={disease_list} // Required.[Array of Object(s)].Default: [].
-                      classNameSelect="" // Optional.[String].Default: "".
-                      classNameWrapper="" // Optional.[String].Default: "".
-                      classNameContainer="" // Optional.[String].Default: "".
-                      classNameOptionListContainer="" // Optional.[String].Default: "".
-                      classNameOptionListItem="" // Optional.[String].Default: "".
-                      customStyleSelect={{
-                        fontSize:"12pt",
-                        textAlign:"center"
-                      }} // Optional.[Object].Default: {}.
-                      customStyleWrapper={{
-                        fontSize:"12pt",
-                        textAlign:"center"
-                      }} // Optional.[Object].Default: {}.
-                      customStyleContainer={{
-                        // width: "100%",
-                        // minWidth: "200px",
-                        // maxWidth: "200px",
-                        // border:"2px solid #BBC8D4", 
-                        // borderRadius:"20px",
-                        border:"2px solid #BBC8D4", 
-                        borderRadius:"15px", 
-                        padding:"0.5px", 
-                        width:"100%", 
-                        minWidth:"20vw", 
-                        maxWidth:"20vw",
-                        height:"100%",
-                        minHeight:"7vh",
-                        maxHeight:"7vh",
-                        fontSize:"12pt",
-                        textAlign:"center"
-                        
-                      }} // Optional.[Object].Default: {}.
-                      customStyleOptionListContainer={{
-                        // overflow: "auto",
-                        fontSize:"12pt",
-                        textAlign:"center",
-                      }} // Optional.[Object].Default: {}.
-                      customStyleOptionListItem={{
-                        fontSize:"12pt",
-                        textAlign:"center"
-                      }} // Optional.[Object].Default: {}.
-                      onChange={(res, e) => {
-                        this.setState({ disease: res.id });
-                        console.log(e);
-                      }} // Optional.[Func].Default: () => {}. Will return the value.
-                      onBlur={() => {}} // Optional.[Func].Default: none. In order to validate the value on blur, you MUST provide a function, even if it is an empty function. Missing this, the validation on blur will not work.
-                      validationOption={{
-                        name: "Disease", // Optional.[String].Default: "". To display in the Error message. i.e Please select a ${name}.
-                        check: true, // Optional.[Bool].Default: true. To determin if you need to validate.
-                        required: true // Optional.[Bool].Default: true. To determin if it is a required field.
-                      }}
-                      style={{
-                    }}
-                    />
+                      />
                   </div>
-            </div>
+                </div>
             
-            <Spacer size="lg"/>
+                <Spacer size="lg"/>
 
-            <div class="item" position="fixed"> 
-            <Box fontWeight={"bold"} fontSize="15pt" marginBottom={"1vh"} letterSpacing="1pt">
-                      DNA Sequence
-                    </Box>
-                    <div style={{border:"2px solid #BBC8D4", borderRadius:"15px", padding:"0.1px", width:"100%", minWidth:"18vw", maxWidth:"18vw"}}>
-                      <FileUploader/>
-                    </div>
-            </div>
+                <div class="item" position="fixed"> 
+                <Box fontWeight={"bold"} fontSize="15pt" marginBottom={"1vh"} letterSpacing="1pt">
+                          DNA Sequence
+                        </Box>
+                        <div style={{border:"2px solid #BBC8D4", borderRadius:"15px", padding:"0.1px", width:"100%", minWidth:"18vw", maxWidth:"18vw"}}>
+                          <FileUploader/>
+                        </div>
+                </div>
 
             
             </div>
-            
-            {/* <Box align="center">
-                <button onClick={this.onOpenModal}>Open modal</button>
-                <Modal open={open} onClose={this.onCloseModal}>
-                <h2>Simple centered modal</h2>
-                <p>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam
-                    pulvinar risus non risus hendrerit venenatis. Pellentesque sit amet
-                    hendrerit risus, sed porttitor quam.
-                </p>
-                </Modal>
-            </Box> */}
 
             <Box marginTop= {"5vh"} align = "Center">
                 <Box fontWeight={"bold"} fontSize="15pt" marginBottom={"1vh"} letterSpacing="1pt">
@@ -314,19 +287,16 @@ import FileUploader from "../../components/FileUpload";
                     }}
                   />
                 </div>
-          </Box>
+            </Box>
   
-
-
-
-            <div style={{ height: "10px" }} />
-            <div
-              className={`my-button my-button__blue save-button`}
-              onClick={this.validateForm} align="Center" style={{ marginTop: "5vh", maxWidth: "20vh", borderRadius: "15px", fontWeight: "bold", letterSpacing: "1px" }}
-            >
-              Submit
-            </div>
-            <input type="submit" style={{ display: "none" }} />
+          <div style={{ height: "10px" }} />
+          <div
+            className={`my-button my-button__blue save-button`}
+            onClick={this.validateForm} align="Center" style={{ marginTop: "5vh", maxWidth: "20vh", borderRadius: "15px", fontWeight: "bold", letterSpacing: "1px" }}
+          >
+            Submit
+          </div>
+          <input type="submit" style={{ display: "none" }} />
             
           </form>
         </div>

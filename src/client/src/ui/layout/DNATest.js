@@ -11,9 +11,8 @@ import Result from "../../components/Result";
 import dnatest from '../../assets/dnatest.png'
 
 function DNATestPage(){
-  const [data, setData] = useState(null)
-  const [radio, setRadio] = useState("KMP")
-  const option = [{key : 'HIV', text : 'HIV', value : 'HIV'}, {key : 'Penyakit1', text : 'Penyakit1', value : 'Penyakit1'}]
+  const [setData] = useState(null)
+
   function getData(val){
     setData(val.target.value)
     console.warn(val.target.value);
