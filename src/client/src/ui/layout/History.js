@@ -10,9 +10,10 @@ function HistoryPage(){
       mb='8'
       fontWeight='extrabold'
       size='2xl'
+      p = '19'
       >
         HISTORY
-      </Heading>
+      </Heading >
       <Search/>
       <HistoryStack/>
     </VStack>

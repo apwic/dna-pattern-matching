@@ -7,7 +7,7 @@ function Search() {
     }
     return (
         <form onSubmit={handleSubmit}>
-            <HStack>
+            <HStack p = '10'>
                 <Input variant='filled' placeholder='Ketik di sini' />
                 <Button colorScheme='teal' variant='solid'>Cari</Button>
             </HStack>
