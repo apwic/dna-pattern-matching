@@ -2,6 +2,12 @@ import React, {useState} from "react";
 import { Box, Flex, Spacer, Heading, Image, position } from "@chakra-ui/react";
 import "../ui/layout/DNATest.css"
 
+import { CircularProgressbar, CircularProgressbarWithChildren, buildStyles
+} from 'react-circular-progressbar';
+import 'react-circular-progressbar/dist/styles.css';
+
+const percentage = 75;
+
 function Result(){
     return(
         <div>
@@ -46,13 +52,33 @@ function Result(){
                         <Box textColor={"1F7A8C"} alignSelf="center" marginLeft={"3vw"} width="100%" fontWeight={"black"} padding={"2"} marginTop={"1vw"} marginRight="5vw" textAlign={"center"}>
                             DETECTION RESULT
                         </Box>
-                            <Box marginTop={"5pt"} height={"100%"} minHeight="25vh" maxHeight={"25vh"} alignContent="center" alignItems={"center"} justifyContent="center">
-                                Ini dikasi graph
+                            <Box marginTop={"5pt"} height={"100%"} minHeight="30vh" maxHeight={"30vh"} alignContent="center" alignItems={"center"} justifyContent="center">
+                                <Box marginLeft={"1.8vw"} width={"100%"} minWidth={"14vw"} maxWidth="14vw" height={"100%"} minHeight={"14vw"} maxHeight={"14vw"}>
+                                <CircularProgressbarWithChildren
+                                    value={80}
+                                    styles={buildStyles({
+                                    pathColor: "#c64047",
+                                    trailColor: "#eee",
+                                    strokeLinecap: "butt"
+                                    })}
+                                >
+                                    {/* Foreground path */}
+                                    <CircularProgressbar
+                                    value={percentage}
+                                    text={`${percentage}%`}
+                                    styles={buildStyles({
+                                        textColor: "black",
+                                        trailColor: "transparent",
+                                        strokeLinecap: "butt"
+                                    })}
+                                    />
+                                </CircularProgressbarWithChildren>
+                                </Box>
                             </Box>
                         
 
                         <Flex alignItems={"center"} justifyContent={"flex-start"} flexDirection="row">
-                            <Box justifyContent="center" textAlign={"center"} fontSize={"8pt"} padding="2" borderRadius={"5pt"} width="100%" minWidth={"15vw"} maxWidth={"15vw"} mt="5" fontWeight="bold" backgroundColor="#FFFFFF" >
+                            <Box marginLeft={"1vw"} justifyContent="center" textAlign={"center"} fontSize={"8pt"} padding="2" borderRadius={"5pt"} width="100%" minWidth={"15vw"} maxWidth={"15vw"} mt="5" fontWeight="bold" backgroundColor="#FFFFFF" >
                                 <Box>
                                     0 - 79 % : NOT DETECTED (FALSE)
                                 </Box>

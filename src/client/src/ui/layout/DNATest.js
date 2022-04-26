@@ -8,7 +8,6 @@ import DNAForm from "./DNAForm";
 import Information from "../../components/Information";
 import Result from "../../components/Result";
 // import { Button, ButtonToolBar} from "react-bootstrap"
-// import {addDiseaseModal} from "../../components/addDiseaseModal";
 import dnatest from '../../assets/dnatest.png'
 
 function DNATestPage(){
