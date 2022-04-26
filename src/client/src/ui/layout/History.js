@@ -4,6 +4,29 @@ import HistoryStack from '../../components/HistoryStack';
 import Search from '../../components/Search';
 
 function HistoryPage(){
+  const history = [
+    {
+        id: 1,
+        nama: 'epi',
+        penyakit: "bucin kronis",
+        persentase: '100%',
+        status: 'positive'
+    },
+    {
+        id: 2,
+        nama: 'anca',
+        penyakit: 'kurang afeksi',
+        persentase: '80%',
+        status: 'positive'
+    },
+    {
+        id: 3,
+        nama: 'budi',
+        penyakit: 'kasep maksimal',
+        persentase: '1000%',
+        status: 'positive'
+    },
+];
   return (
     <VStack p={4}>
       <Heading
@@ -15,7 +38,7 @@ function HistoryPage(){
         HISTORY
       </Heading >
       <Search/>
-      <HistoryStack/>
+      <HistoryStack history = {history}/>
     </VStack>
   );
 }
