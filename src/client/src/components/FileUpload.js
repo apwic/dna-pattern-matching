@@ -1,4 +1,4 @@
-import { Box } from '@chakra-ui/react';
+import { Box, Flex, Spacer, Heading, Image, position } from "@chakra-ui/react";
 import React ,{useState, Fragment} from 'react';
 import styled from 'styled-components';
 
@@ -43,19 +43,21 @@ const FileUploader = props => {
 
   return (
     <Fragment>
-      <label style={{border: "1px", width:"100%", minWidth:"20vw", maxWidth:"20vw"}} className="file-label" htmlFor='customFile'>
-        {filename}
-      </label>
-      <Button onClick={handleClick}>
-        Upload
-      </Button>
-      <input type="file"
-             accept=".txt"
-             ref={hiddenFileInput}
-             id="customFile"
-             onChange={handleChange}
-             style={{display:'none'}} 
-      />
+      <Flex>
+        <label style={{marginTop:"5pt", border: "1px", width:"100%", minWidth:"15vw", maxWidth:"15vw", height:"100%", minHeight:"1vh", maxHeight:"1vh"}} className="file-label" htmlFor='customFile'>
+          {filename}
+        </label>
+        <Button onClick={handleClick}>
+          Upload
+        </Button>
+        <input type="file"
+              accept=".txt"
+              ref={hiddenFileInput}
+              id="customFile"
+              onChange={handleChange}
+              style={{display:'none'}} 
+        />
+      </Flex>
 
     </Fragment>
   );

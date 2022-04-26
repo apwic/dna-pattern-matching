@@ -248,7 +248,7 @@ import FileUploader from "../../components/FileUpload";
             <Box fontWeight={"bold"} fontSize="15pt" marginBottom={"1vh"} letterSpacing="1pt">
                       DNA Sequence
                     </Box>
-                    <div style={{border:"2px solid #BBC8D4", borderRadius:"15px", padding:"0.1px", width:"100%", minWidth:"20vw", maxWidth:"20vw"}}>
+                    <div style={{border:"2px solid #BBC8D4", borderRadius:"15px", padding:"0.1px", width:"100%", minWidth:"18vw", maxWidth:"18vw"}}>
                       <FileUploader/>
                     </div>
             </div>
