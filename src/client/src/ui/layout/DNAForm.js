@@ -255,134 +255,6 @@ import FileUploader from "../../components/FileUpload";
 
             
             </div>
-
-            {/* <Box>
-                <h3>Name</h3>
-                <div>
-                    <Textbox
-                      attributesWrapper={{}}
-                      attributesInput={{
-                        id: "Name",
-                        name: "Name",
-                        type: "text",
-                        placeholder: "Write Your Name Here!"
-                      }}
-                      value={name} // Optional.[String].Default: "".
-                      disabled={false} // Optional.[Bool].Default: false.
-                      validate={validate} // Optional.[Bool].Default: false. If you have a submit button and trying to validate all the inputs of your form at onece, toggle it to true, then it will validate the field and pass the result via the "validationCallback" you provide.
-                      validationCallback={(res) =>
-                        this.setState({ hasNameError: res, validate: false })
-                      } // Optional.[Func].Default: none. Return the validation result.
-                      classNameInput="" // Optional.[String].Default: "".
-                      classNameWrapper="" // Optional.[String].Default: "".
-                      classNameContainer="" // Optional.[String].Default: "".
-                      customStyleInput={{}} // Optional.[Object].Default: {}.
-                      customStyleWrapper={{}} // Optional.[Object].Default: {}.
-                      customStyleContainer={{}} // Optional.[Object].Default: {}.
-                      onChange={(name, e) => {
-                        this.setState({ name });
-                        console.log(e);
-                      }} // Required.[Func].Default: () => {}. Will return the value.
-                      onBlur={(e) => {
-                        console.log(e);
-                      }} // Optional.[Func].Default: none. In order to validate the value on blur, you MUST provide a function, even if it is an empty function. Missing this, the validation on blur will not work.
-                      // onFocus={(e) => {console.log(e);}} // Optional.[Func].Default: none.
-                      // onClick={(e) => {console.log(e);}} // Optional.[Func].Default: none.
-                      validationOption={{
-                        name: "Name", // Optional.[String].Default: "". To display in the Error message. i.e Please enter your ${name}.
-                        check: true, // Optional.[Bool].Default: true. To determin if you need to validate.
-                        required: true // Optional.[Bool].Default: true. To determin if it is a required field.
-                      }} 
-                      style={{
-                        width: "30%"
-                    }}
-                    />
-                </div>
-            </Box>
-  
-            <Spacer size="lg"/>
-            <Box>
-                <h3 position = "fixed">Prediction</h3>
-                  <div>
-                    <Select
-                      attributesWrapper={{}}
-                      attributesInput={{
-                        id: "country",
-                        name: "country"
-                      }}
-                      value={disease} // Optional.[String].Default: "".
-                      disabled={false} // Optional.[Bool].Default: false.
-                      showSearch={true}
-                      validate={validate} // Optional.[Bool].Default: false. If you have a submit button and trying to validate all the inputs of your form at onece, toggle it to true, then it will validate the field and pass the result via the "validationCallback" you provide.
-                      validationCallback={(res) =>
-                        this.setState({ hasDiseaseError: res, validate: false })
-                      } // Optional.[Func].Default: none. Return the validation result.
-                      optionList={disease_list} // Required.[Array of Object(s)].Default: [].
-                      classNameSelect="" // Optional.[String].Default: "".
-                      classNameWrapper="" // Optional.[String].Default: "".
-                      classNameContainer="" // Optional.[String].Default: "".
-                      classNameOptionListContainer="" // Optional.[String].Default: "".
-                      classNameOptionListItem="" // Optional.[String].Default: "".
-                      customStyleSelect={{}} // Optional.[Object].Default: {}.
-                      customStyleWrapper={{}} // Optional.[Object].Default: {}.
-                      customStyleContainer={{}} // Optional.[Object].Default: {}.
-                      customStyleOptionListContainer={{
-                      }} // Optional.[Object].Default: {}.
-                      customStyleOptionListItem={{}} // Optional.[Object].Default: {}.
-                      onChange={(res, e) => {
-                        this.setState({ disease: res.id });
-                        console.log(e);
-                      }} // Optional.[Func].Default: () => {}. Will return the value.
-                      onBlur={() => {}} // Optional.[Func].Default: none. In order to validate the value on blur, you MUST provide a function, even if it is an empty function. Missing this, the validation on blur will not work.
-                      validationOption={{
-                        name: "Disease", // Optional.[String].Default: "". To display in the Error message. i.e Please select a ${name}.
-                        check: true, // Optional.[Bool].Default: true. To determin if you need to validate.
-                        required: true // Optional.[Bool].Default: true. To determin if it is a required field.
-                      }}
-                    />
-                  </div>
-            </Box>
-  
-            <Spacer size="lg"/>
-            <Box>
-                    <h3>DNA Sequence</h3>
-                  <div>
-                    <Textarea
-                      attributesInput={{
-                        id: "dnasequence",
-                        name: "dnasequence",
-                        placeholder: "Write your DNA Sequence Here!"
-                      }}
-                      value={dnasequence} // Optional.[String].Default: "".
-                      disabled={false} // Optional.[Bool].Default: false.
-                      placeholder="Write your DNA Sequence Here!" // Optional.[String].Default: "".
-                      validate={validate} // Optional.[Bool].Default: false. If you have a submit button and trying to validate all the inputs of your form at onece, toggle it to true, then it will validate the field and pass the result via the "validationCallback" you provide.
-                      validationCallback={(res) =>
-                        this.setState({
-                          hasDnaseqError: res,
-                          validate: false
-                        })
-                      } // Optional.[Func].Default: none. Return the validation result.
-                      onChange={(dnasequence, e) => {
-                        this.setState({ dnasequence });
-                        console.log(e);
-                      }} // Required.[Func].Default: () => {}. Will return the value.
-                      onBlur={(e) => {
-                        console.log(e);
-                      }} // Optional.[Func].Default: none. In order to validate the value on blur, you MUST provide a function, even if it is an empty function. Missing this, the validation on blur will not work.
-                      // onFocus={(e) => {console.log(e);}} // Optional.[Func].Default: none.
-                      // onClick={(e) => {console.log(e);}} // Optional.[Func].Default: none.
-                      validationOption={{
-                        name: "DNA Sequence", // Optional.[String].Default: "". To display in the Error message. i.e Please enter your ${name}.
-                        check: true, // Optional.[Bool].Default: true. To determin if you need to validate.
-                        required: true, // Optional.[Bool].Default: true. To determin if it is a required field.
-                        type: "string", // Optional.[String].Default: "string". Validation type, options are ['string', 'number'].
-                        reg: /^[ACGT]+$/g,
-                        regMsg: "DNA Sequence must be composed of A, C, G, T"
-                      }}
-                    />
-                  </div>
-            </Box> */}
             
             {/* <Box align="center">
                 <button onClick={this.onOpenModal}>Open modal</button>
@@ -458,6 +330,7 @@ import FileUploader from "../../components/FileUpload";
               Submit
             </div>
             <input type="submit" style={{ display: "none" }} />
+            
           </form>
         </div>
       );

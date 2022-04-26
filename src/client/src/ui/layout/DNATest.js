@@ -5,6 +5,8 @@ import React, {useState} from "react";
 // import { Input } from "semantic-ui-react";
 import './DNATest.css'
 import DNAForm from "./DNAForm";
+import Information from "../../components/Information";
+import Result from "../../components/Result";
 // import { Button, ButtonToolBar} from "react-bootstrap"
 // import {addDiseaseModal} from "../../components/addDiseaseModal";
 
@@ -24,58 +26,16 @@ function DNATestPage(){
   
   return (
         <div className='dnatest'>
-            <Flex align="center" justify="center" style={{height : "20vh", width : "94vw", marginLeft : "6vw", backgroundColor : "#E1E5F1"}}>
+            <Flex align="center" justify="center" style={{height : "20vh", width : "93.3vw", marginLeft : "5vw", backgroundColor : "#E1E5F1"}}>
               <Heading>DNA Test</Heading>
             </Flex>
-            {/* <Box align="center" justify="center" style={{height : "20vh", width : "94vw", marginLeft : "5vw", marginTop: "0px", backgroundColor : "#E1E5F1"}}>
-              <Heading>DNA Test</Heading>
-            </Box> */}
 
-            {/* <form onSubmit={handleSubmit}>
-              <Flex
-                alignItems={"center"}
-                flexDirection={"row"}
-                marginX={"10%"}
-              >
-                <Box>
-                  <h3>Name</h3>
-                  <Input type="text" placeholder="Name" onChange={getData}/>
-                </Box>
-                <Spacer size="lg" />
-                <Box>
-                  <h3 position = "fixed">Prediction</h3>
-                  <Dropdown 
-                  placeholder="Select an option" 
-                  fluid 
-                  search 
-                  selection 
-                  options={option}
-                  style = {{width : "50%", position : "fixed"}}
-                  />
-                </Box>
-                <Spacer size="lg" />
-                <Box>
-                  <h3>DNA Sequence</h3>
-                  <Input type="text" placeholder="DNA Sequence" onChange={getData}/>
-                </Box>
-              </Flex>
-
-              <Box marginTop= {"5vh"} align = "Center">
-                <h3>Technique</h3>
-                <input type="radio" checked={radio === "KMP"} value="KMP" onChange={(e)=>setRadio(e.target.value)}/>
-                <label>KMP</label>
-                <br/>
-                <input type="radio" checked={radio === "Bayer-Moore"} value="Bayer-Moore" onChange={(e)=>setRadio(e.target.value)}/>
-                <label>Bayer-Moore</label>
-              </Box>
-              <Box marginTop={"5vh"} align = "Center">
-                <button type="submit" color="#91ACCA">Submit</button>
-              </Box>
-
-            </form> */}
-
-            <Box marginTop={"5vh"} align = "Center" marginLeft={"6vw"} width={"94vw"}>
+            <Box marginTop={"5vh"} align = "Center" marginLeft={"7vw"} width={"91.3vw"}>
               <DNAForm/>
+            </Box>
+
+            <Box backgroundColor={"#C0DBF8"} borderRadius="15pt" marginTop={"5vh"} marginBottom={"5vh"} marginLeft={"12vw"} width={"77vw"}>
+              <Result/>
             </Box>
         </div>
       );
