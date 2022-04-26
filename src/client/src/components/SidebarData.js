@@ -12,13 +12,19 @@ export const SidebarData = [
   },
   {
     title: 'DNA Test',
-    path: '/dnatest',
+    path: '/DNATest',
     icon: <FaIcons.FaDna />,
     cName: 'nav-text'
   },
   {
+    title: 'Add Disease',
+    path: '/AddDisease',
+    icon: <FaIcons.FaPlus />,
+    cName: 'nav-text'
+  },
+  {
     title: 'History',
-    path: '/history',
+    path: '/History',
     icon: <FaIcons.FaClock />,
     cName: 'nav-text'
   }

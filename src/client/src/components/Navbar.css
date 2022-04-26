@@ -21,7 +21,7 @@
   }
 
   .menu-bars2 {
-    margin-left: 1.5rem;
+    margin-left: 2rem;
     width: "100%";
     min-width: 12vw;
     max-width: 12vw;
@@ -34,8 +34,8 @@
   .nav-menu {
     background-color: #012B39;
     width: "100%";
-    min-width: 12vw;
-    max-width: 12vw;
+    min-width: 14vw;
+    max-width: 14vw;
     height: 100vh;
     display: flex;
     justify-content: center;
@@ -47,8 +47,8 @@
   
   .nav-menu.active {
     width: "100%";
-    min-width: 12vw;
-    max-width: 12vw;
+    min-width: 14vw;
+    max-width: 14vw;
     left: 0;
     transition: 350ms;
   }

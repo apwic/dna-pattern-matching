@@ -130,8 +130,8 @@ import FileUploader from "../../components/FileUpload";
                           minWidth:"20vw", 
                           maxWidth:"20vw",
                           height:"100%",
-                          minHeight:"6vh",
-                          maxHeight:"6vh",
+                          minHeight:"7vh",
+                          maxHeight:"7vh",
                           textAlign:"center",
                           fontSize:"12pt"
                         }} // Optional.[Object].Default: {}.
@@ -208,8 +208,8 @@ import FileUploader from "../../components/FileUpload";
                         minWidth:"20vw", 
                         maxWidth:"20vw",
                         height:"100%",
-                        minHeight:"6vh",
-                        maxHeight:"6vh",
+                        minHeight:"7vh",
+                        maxHeight:"7vh",
                         fontSize:"12pt",
                         textAlign:"center"
                         
@@ -237,9 +237,6 @@ import FileUploader from "../../components/FileUpload";
                     }}
                     />
                   </div>
-                  <Box fontWeight={"light"} fontSize="10pt">
-                    Disease not found? Add one
-                  </Box>
             </div>
             
             <Spacer size="lg"/>

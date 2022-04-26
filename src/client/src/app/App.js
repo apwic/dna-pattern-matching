@@ -6,6 +6,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Home from '../pages/Home';
 import DNATest from '../pages/DNATest';
 import History from '../pages/History';
+import AddDisease from '../pages/AddDisease';
 
 function App() {
   return (
@@ -29,8 +30,9 @@ function App() {
         <Navbar />
         <Routes>
           <Route path='/' exact element={<Home/>} />
-          <Route path='/dnatest' element={<DNATest/>} />
-          <Route path='/history' element={<History/>} />
+          <Route path='/DNATest' element={<DNATest/>} />
+          <Route path='/AddDisease' element={<AddDisease/>} />
+          <Route path='/History' element={<History/>} />
         </Routes>
       </Router>
     </>

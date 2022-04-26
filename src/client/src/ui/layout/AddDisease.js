@@ -4,17 +4,13 @@ import { Box, Flex, Spacer, Heading, Image, position } from "@chakra-ui/react";
 import React, {useState} from "react";
 // import { Input } from "semantic-ui-react";
 import './DNATest.css'
-import DNAForm from "./DNAForm";
-import Information from "../../components/Information";
-import Result from "../../components/Result";
+import DiseaseForm from "./DiseaseForm";
 // import { Button, ButtonToolBar} from "react-bootstrap"
 // import {addDiseaseModal} from "../../components/addDiseaseModal";
-import dnatest from '../../assets/dnatest.png'
+import disease from '../../assets/disease.png'
 
-function DNATestPage(){
+function AddDiseasePage(){
   const [data, setData] = useState(null)
-  const [radio, setRadio] = useState("KMP")
-  const option = [{key : 'HIV', text : 'HIV', value : 'HIV'}, {key : 'Penyakit1', text : 'Penyakit1', value : 'Penyakit1'}]
   function getData(val){
     setData(val.target.value)
     console.warn(val.target.value);
@@ -28,20 +24,17 @@ function DNATestPage(){
   return (
         <div className='dnatest'>
             <Flex align="center" justify="center" style={{height : "20vh", width : "93.3vw", marginLeft : "5vw", backgroundColor : "#E1E5F1"}}>
-                <Box>
-                  <Image boxSize='100%' src={dnatest} alt="logo"/>
-                </Box>
+              {/* <Box>
+                <Image boxSize='70%' src={disease} alt="logo"/>
+              </Box> */}
+              <Heading>Add Disease</Heading>
             </Flex>
 
             <Box marginTop={"5vh"} align = "Center" marginLeft={"7vw"} width={"91.3vw"}>
-              <DNAForm/>
-            </Box>
-
-            <Box backgroundColor={"#C0DBF8"} borderRadius="15pt" marginTop={"5vh"} marginBottom={"5vh"} marginLeft={"12vw"} width={"77vw"}>
-              <Result/>
+              <DiseaseForm/>
             </Box>
         </div>
       );
 }
 
-export default DNATestPage;
+export default AddDiseasePage;

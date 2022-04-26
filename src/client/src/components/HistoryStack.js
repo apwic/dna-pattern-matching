@@ -16,7 +16,7 @@ function HistoryStack({history}) {
         p = '2'
         borderRadius='lg'
         w='100%'
-        maxW={{base: '90vww', sm: '80vw', md: '50vw', lg: '40vw'}}
+        maxW={{base: '90vw', sm: '80vw', md: '50vw', lg: '90vw'}}
         alignItems='stretch'
         backgroundColor='#91ACCA'
         >
@@ -26,7 +26,7 @@ function HistoryStack({history}) {
             borderRadius='lg'
             p = '2px'
             my= '10px'
-            backgroundColor='white'
+            backgroundColor='#E1E5F1'
             >
                 <h2>
                     <AccordionButton _expanded={{ bg: '#012B39', color: 'white' }} borderRadius='lg'>

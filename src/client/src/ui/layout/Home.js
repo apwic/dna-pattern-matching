@@ -8,7 +8,7 @@ function HomePage(){
       <Box bg='#91ACCA' w='100%' h='140'  color='moon'>
       </Box>
       <Tryit/>
-      <Box bg='#91ACCA' w='100%' h='140'  color='moon'>
+      <Box bg='#E1E5F1' w='100%' h='140'  color='moon'>
         
       </Box>
     </VStack>
