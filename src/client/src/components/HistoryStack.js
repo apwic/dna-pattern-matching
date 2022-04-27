@@ -21,7 +21,7 @@ function HistoryStack({history}) {
         backgroundColor='#91ACCA'
         >
             {history.map(item => (
-            <AccordionItem key={item.id} 
+            <AccordionItem key={item.IdPengguna} 
             borderWidth='1px'
             borderRadius='lg'
             p = '2px'
@@ -32,7 +32,7 @@ function HistoryStack({history}) {
                     <AccordionButton _expanded={{ bg: '#012B39', color: 'white' }} borderRadius='lg'>
                         <Box flex='1' textAlign='left'>
                             <Heading size= 'md'>
-                                {item.nama}
+                              {item.NamaPengguna}
                             </Heading>
                         </Box>
                         <AccordionIcon />
@@ -41,13 +41,16 @@ function HistoryStack({history}) {
                 <AccordionPanel pb={4}>
                     <VStack>
                         <Heading size= 'base'>
-                            {item.penyakit}
+                            Penyakit: {item.Penyakit}
                         </Heading>
                         <Heading size= 'base'>
-                            {item.persentase}
+                            Kemiripan: {item.Kemiripan}
                         </Heading>
                         <Heading size= 'base'>
-                            {item.status}
+                            Status: {item.Status}
+                        </Heading>
+                        <Heading size= 'base'>
+                            Tanggal: {item.Tanggal}
                         </Heading>
                     </VStack>
                 </AccordionPanel>

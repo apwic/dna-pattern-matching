@@ -19,6 +19,8 @@ exports.createTesDNAKMP = (req, res) => {
           err.message || "Some error occurred while creating the TesDNA."
       });
     } else {
+      console.log(req.body);
+      console.log(penyakit);
       const kemiripan = Algo.kmpMatch(req.body.sekuens, penyakit[0].Sekuens);
       let status = 0;
   

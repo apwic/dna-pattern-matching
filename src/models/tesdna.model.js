@@ -40,7 +40,7 @@ TesDNA.getAll = (result) => {
 
 // GET LATEST
 TesDNA.getLatest = (result) => {
-  sql.query("SELECT * FROM TesDNA ORDER BY Tanggal DESC LIMIT 1", (err, res) => {
+  sql.query("SELECT * FROM TesDNA ORDER BY IdPengguna DESC LIMIT 1", (err, res) => {
     if (err) {
       console.log("error: ", err);
       result(null, err);

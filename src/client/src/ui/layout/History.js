@@ -1,97 +1,43 @@
-import { Box, Flex, Spacer, Heading, Image, VStack } from "@chakra-ui/react";
+import { Box, Flex, Spacer, Heading, Image, VStack, Button, HStack, Input } from "@chakra-ui/react";
 import React from "react";
 import HistoryStack from '../../components/HistoryStack';
 import Search from '../../components/Search';
+import apiClient from "../../http-common.js"
+import * as FaIcons from 'react-icons/fa';
 
 function HistoryPage(){
-  const history = [
-    {
-        id: 1,
-        nama: 'epi',
-        penyakit: "bucin kronis",
-        persentase: '100%',
-        status: 'positive'
-    },
-    {
-        id: 2,
-        nama: 'anca',
-        penyakit: 'kurang afeksi',
-        persentase: '80%',
-        status: 'positive'
-    },
-    {
-        id: 3,
-        nama: 'budi',
-        penyakit: 'kasep maksimal',
-        persentase: '1000%',
-        status: 'positive'
-    },
-    {
-      id: 4,
-      nama: 'epi',
-      penyakit: "bucin kronis",
-      persentase: '100%',
-      status: 'positive'
-  },
-  {
-      id: 5,
-      nama: 'anca',
-      penyakit: 'kurang afeksi',
-      persentase: '80%',
-      status: 'positive'
-  },
-  {
-      id: 6,
-      nama: 'budi',
-      penyakit: 'kasep maksimal',
-      persentase: '1000%',
-      status: 'positive'
-  },
-  {
-    id: 7,
-    nama: 'epi',
-    penyakit: "bucin kronis",
-    persentase: '100%',
-    status: 'positive'
-  },
-  {
-      id: 8,
-      nama: 'anca',
-      penyakit: 'kurang afeksi',
-      persentase: '80%',
-      status: 'positive'
-  },
-  {
-      id: 9,
-      nama: 'budi',
-      penyakit: 'kasep maksimal',
-      persentase: '1000%',
-      status: 'positive'
-  },
-  {
-    id: 10,
-    nama: 'epi',
-    penyakit: "bucin kronis",
-    persentase: '100%',
-    status: 'positive'
-  },
-  {
-    id: 11,
-    nama: 'anca',
-    penyakit: 'kurang afeksi',
-    persentase: '80%',
-    status: 'positive'
-  },
-  {
-    id: 12,
-    nama: 'budi',
-    penyakit: 'kasep maksimal',
-    persentase: '1000%',
-    status: 'positive'
-  },
-];
-  return (
+  const initiateDNATest = {IdPengguna:"", NamaPengguna: "", Penyakit: "", Kemiripan: "", Status:"", Sekuens: "", Tanggal: ""};
+  const initiateSearch = {Penyakit: "", Tanggal: ""};
+  const [history, setHistory] = React.useState([initiateDNATest]);
+  const [search, setSeatch] = React.useState(initiateSearch);
 
+  async function getHistory(e) {
+    try{
+      const response = await apiClient.get('history/get-all-tes-dna');
+      const result = {
+        status: response.status + "-" + response.statusText,
+        headers: response.headers,
+        data: response.data
+      };
+      console.log(result);
+      setHistory(result.data);
+    } catch(err){
+      console.log(err);
+    }
+  }
+
+  const handleChange = (e) => {
+    const {name, value} = e.target;
+    setSeatch({...search, [name]: value});
+    console.log(search);
+  }
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    getHistory(e);
+  }
+  
+  return (
     <VStack p={4}>
       <Heading
       mb='2'
@@ -102,7 +48,14 @@ function HistoryPage(){
         HISTORY
       </Heading >
 
-      <Search/>
+      <form onChange={handleChange}>
+            <HStack p = '10'>
+                <Input variant='filled' placeholder='Ketik di sini' />
+                <Button colorScheme='teal' variant='solid' onClick={handleSubmit}>
+                    <FaIcons.FaSearch size={"80%"}/>
+                </Button>
+            </HStack>
+      </form>
       
       <Box marginLeft={"10vw"} width="100%" minWidth={"70vw"} maxWidth={"70vw"}>
         <HistoryStack history={history}/>

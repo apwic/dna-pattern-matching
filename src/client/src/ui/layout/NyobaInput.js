@@ -1,17 +1,20 @@
-import { Button, FormControl, HStack, VStack, Select, Heading, Input, Stack, RadioGroup, Radio} from '@chakra-ui/react'
+import { Button, FormControl, VStack, Select, Heading, Input, Stack, RadioGroup, Radio} from '@chakra-ui/react'
 import React from 'react'
 import { useState, useEffect } from 'react'
 import apiClient from "../../http-common.js";
 
+
 function NyobaInput() {
     const initialValue = {namapengguna : "", penyakit : "", technique: "", sekuens: "", tanggal:" "};
+    const initialDisease = {id: "", penyakit: ""}
     const [formValues, setFormValues] = useState(initialValue);
+    const [diseaseList, setDiseaseList] = useState([initialDisease]);
     const [formErrors, setFormErrors] = useState({});
     const [isSubmit, setIsSubmit] = useState(false);
 
     const handleChange = (e) => {
-        const {namapengguna, value} = e.target;
-        setFormValues({...formValues, [namapengguna]: value});
+        const {name, value} = e.target;
+        setFormValues({...formValues, [name]: value});
         console.log(formValues);
     }
 
@@ -56,22 +59,44 @@ function NyobaInput() {
         return `${date} ${time}`
       }
 
+    async function updateDiseaseList(e) {
+      try{
+        const response = await apiClient.get('penyakit/get-penyakit');
+        const result = {
+          status: response.status + "-" + response.statusText,
+          headers: response.headers,
+          data: response.data
+        };
+  
+        const data = result.data;
+        console.log(data);
+        setDiseaseList(data);
+        // for(let i=0; i<data.length; i++){
+        // }
+        // setGetResult(formatResponse(result));
+      } catch (err) {
+        // setGetResult(formatResponse(err.response?.data || err));
+        console.log(err.response?.data || err);
+      }
+    }
+
     async function createDNAtest(e) {
-        const {technique, name, disease,fileContent} = e.target;
+        // const {technique, name, disease, fileContent} = e.target.values;
+        // console.log(technique, name, disease, fileContent);
         try{
             let response;
-            if (technique === "KMP") {
+            if (formValues.technique === "KMP") {
               response = await apiClient.post('dnatest/create-tes-dna-kmp', {
-                namapengguna: name,
-                penyakit: disease,
-                sekuens: fileContent,
+                namapengguna: formValues.namapengguna,
+                penyakit: formValues.penyakit,
+                sekuens: formValues.sekuens,
                 tanggal: formatedTimestamp(),
               });
             } else {
               response = await apiClient.post('dnatest/create-tes-dna-bm', {
-                namapengguna: name,
-                penyakit: disease,
-                sekuens: fileContent,
+                namapengguna: formValues.namapengguna,
+                penyakit: formValues.penyakit,
+                sekuens: formValues.sekuens,
                 tanggal: formatedTimestamp(),
               });
             }
@@ -80,6 +105,9 @@ function NyobaInput() {
               headers: response.headers,
               data: response.data
             };
+            if (response.status === 200){
+              alert("Success");
+            }
             console.log(result);
           } catch (err) {
             console.log(err.response?.data || err);
@@ -110,18 +138,7 @@ function NyobaInput() {
         return errors;
     }
 
-    const disease_list = [
-        { id: "", namapengguna: "Select a disease" },
-        { id: "HIV", namapengguna: "HIV" },
-        { id: "Penyakit1", namapengguna: "Penyakit1" },
-        { id: "Penyakit2", namapengguna: "Penyakit2" },
-        { id: "Penyakit3", namapengguna: "Penyakit3" },
-        { id: "Penyakit4", namapengguna: "Penyakit4" },
-        { id: "Penyakit5", namapengguna: "Penyakit5" },
-        { id: "Penyakit6", namapengguna: "Penyakit6" },
-        { id: "Penyakit7", namapengguna: "Penyakit7" },
-        { id: "Penyakit8", namapengguna: "Penyakit8" }
-      ];
+
   return (
     <VStack>
         <VStack p = '50'>
@@ -130,7 +147,7 @@ function NyobaInput() {
                     namapengguna
                 </Heading>
                     <FormControl isRequired>
-                        <Input namapengguna='namapengguna'  placeholder='Input your namapengguna here' value={formValues.namapengguna}
+                        <Input name='namapengguna'  placeholder='Input your namapengguna here' value={formValues.namapengguna}
                         onChange = {handleChange}
                         />
                         <p>{formErrors.namapengguna}</p>
@@ -140,9 +157,9 @@ function NyobaInput() {
                 <Heading>
                     penyakit
                 </Heading>
-                <Select namapengguna='penyakit' placeholder='Select country' onChange = {e=>setFormValues({...formValues, penyakit: e.target.value}) } value={formValues.penyakit}>
-                    {disease_list.map(disease => (
-                    <option>{disease.namapengguna}</option>
+                <Select name='penyakit' placeholder='Select country' onClick={e=>updateDiseaseList(e)} onChange = {e=>setFormValues({...formValues, penyakit: e.target.value}) } value={formValues.penyakit}>
+                    {diseaseList.map(disease => (
+                    <option>{disease.NamaPenyakit}</option>
                     ))}
                 </Select>
                 <p>{formErrors.penyakit}</p>
@@ -166,10 +183,10 @@ function NyobaInput() {
         <Heading>
                 technique
         </Heading>
-        <RadioGroup namapengguna='technique'>
+        <RadioGroup name='technique'>
             <Stack direction='col'>
-                <Radio namapengguna = 'technique' value='kmp' onChange = {handleChange }>KMP</Radio>
-                <Radio namapengguna = 'technique' value='bayerMoore' onChange = {handleChange} >Bayer-Moore</Radio>
+                <Radio name = 'technique' value='KMP' onChange = {handleChange }>KMP</Radio>
+                <Radio name = 'technique' value='bayerMoore' onChange = {handleChange} >Bayer-Moore</Radio>
             </Stack>
         </RadioGroup>
         <p>{formErrors.technique}</p>
@@ -179,4 +196,4 @@ function NyobaInput() {
   )
 }
 
-export default NyobaInput
+export default NyobaInput;

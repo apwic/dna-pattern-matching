@@ -8,7 +8,7 @@ import 'react-circular-progressbar/dist/styles.css';
 
 
 const Result = (data) => {
-  console.log(data.props);
+  console.log(data);
     return(
         <div>
             <div>
@@ -28,7 +28,7 @@ const Result = (data) => {
                             </Box>
 
                             <Box padding={"2"} fontSize={"17pt"} marginTop={"1vw"}>
-                                {data.props.NamaPengguna}
+                                {data.NamaPengguna}
                             </Box>
                         </Flex>
 
@@ -38,7 +38,7 @@ const Result = (data) => {
                             </Box>
 
                             <Box padding={"2"} fontSize={"17pt"} marginTop={"0.5vw"}>
-                                {data.props.Tanggal}
+                                {data.Tanggal}
                             </Box>
                         </Flex>
 
@@ -48,7 +48,7 @@ const Result = (data) => {
                             </Box>
 
                             <Box padding={"2"} fontSize={"17pt"}  marginTop={"1vw"}>
-                                {data.props.Penyakit}
+                                {data.Penyakit}
                             </Box>
                         </Flex>
 
@@ -72,8 +72,8 @@ const Result = (data) => {
                                 >
                                     {/* Foreground path */}
                                     <CircularProgressbar
-                                    value={data.props.Kemiripan}
-                                    text={`${data.props.Kemiripan}%`}
+                                    value={data.Kemiripan}
+                                    text={`${data.Kemiripan}%`}
                                     styles={buildStyles({
                                         textColor: "black",
                                         trailColor: "transparent",
