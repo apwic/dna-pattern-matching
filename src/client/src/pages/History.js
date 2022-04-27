@@ -1,10 +1,12 @@
 import React from 'react';
-import HistoryPage from '../ui/layout/History';
+import NyobaInput from '../ui/layout/NyobaInput';
+// import HistoryPage from '../ui/layout/History';
 
 function History() {
   return (
     <div className='history'>
-      <HistoryPage/>
+      {/* <HistoryPage/> */}
+      <NyobaInput/>
     </div>
   );
 }
