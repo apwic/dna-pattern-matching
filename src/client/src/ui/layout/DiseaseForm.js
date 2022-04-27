@@ -14,6 +14,8 @@ import FileUploader from "../../components/FileUpload";
       super(props);
       this.state = {
         name: "",
+        filename: '',
+        fileContent: "",
         hasNameError: true,
         validate: false
       };
@@ -23,7 +25,31 @@ import FileUploader from "../../components/FileUpload";
     toggleValidating(validate) {
       this.setState({ validate });
     }
+    
+    handleChange = event => {
+      const fileUploaded = event.target.files[0];
+      const filename = fileUploaded.name;
+      const reader = new FileReader();
+      const formData = new FormData();
+      const hasFileError = this.state;
+      formData.append('file', fileUploaded);
   
+      reader.readAsText(fileUploaded);
+      reader.onload = () => {
+        this.setState({fileContent : reader.result});
+        console.log(reader.result);
+      }
+      if (filename !== '') {
+        hasFileError = false;
+      }
+
+      reader.onerror = () => {
+        console.log(reader.error);
+        hasFileError = false;
+      }
+
+    };
+
     validateForm(e) {
       e.preventDefault();
       this.toggleValidating(true);
@@ -129,9 +155,18 @@ import FileUploader from "../../components/FileUpload";
                         Sequence
                     </Box>
 
-                    <div style={{border:"2px solid #BBC8D4", borderRadius:"15px", padding:"0.1px", width:"100%", minWidth:"18vw", maxWidth:"18vw"}}>
-                        <FileUploader/>
-                    </div>
+                    <div align="center" justifyContent="center" style={{ borderRadius:"15px", padding:"0.1px", width:"100%", minWidth:"18vw", maxWidth:"18vw", height:"100%", minHeight:"7vh", maxHeight:"7vh"}}>
+              {/* {this.state.filename}
+              <Button>
+                Upload
+              </Button> */}
+              <input type="file"
+                    accept=".txt"
+                    id="customFile"
+                    onChange={this.handleChange}
+                    style={{ width:"100%", minWidth:"16vw", maxWidth:"16vw"}}
+              />
+            </div>
                 </div>
 
 

@@ -1,6 +1,6 @@
 import { Box, Flex, Spacer, Heading, Image, position } from "@chakra-ui/react";
 
-import React, { Component } from "react";
+import React, { Component, useState, useRef } from "react";
 import {
   Textbox,
   Textarea,
@@ -11,6 +11,23 @@ import "react-inputs-validation/lib/react-inputs-validation.min.css";
 import "./Styles.css";
 import "./DNATest.css";
 import FileUploader from "../../components/FileUpload";
+import styled from 'styled-components';
+
+// Style Button
+const Button = styled.button`
+  /* Insert your favorite CSS code to style a button */
+    background-color: #012B39;
+    border-radius: 13px;
+    padding: 5px;
+    border: 2px solid #012B39;
+    text-align: center;
+    text-color: #FFFFFF;
+    font-size: 10pt;
+    font-weight: bold;
+    letterSpacing: 2pt;
+    color: #FFFFFF;
+    margin: 4px 3px;
+  `;
 
   const technique_list = [
     { id: "KMP", name: "KMP" },
@@ -31,21 +48,55 @@ import FileUploader from "../../components/FileUpload";
   ];
   
   class DNAForm extends Component {
+
     constructor(props) {
       super(props);
       this.state = {
         name: "",
         // dnasequence: "",
+        filename : '',
+        setUploadedFile : ({}),
         disease: "",
         technique: "",
         hasNameError: true,
         // hasDnaseqError: true,
+        fileContent: "",
+        hasFileError: true,
         hasDiseaseError: true,
         hasTechniqueError:true,
-        validate: false
+        validate: false,
       };
       this.validateForm = this.validateForm.bind(this);
+      // const hiddenFileInput = useRef(null);
     }
+
+    // handleClick = event => {
+    //   hiddenFileInput.current.click();
+    // };
+
+    handleChange = event => {
+      const fileUploaded = event.target.files[0];
+      const filename = fileUploaded.name;
+      const reader = new FileReader();
+      const formData = new FormData();
+      const hasFileError = this.state;
+      formData.append('file', fileUploaded);
+  
+      reader.readAsText(fileUploaded);
+      reader.onload = () => {
+        this.setState({fileContent : reader.result});
+        console.log(reader.result);
+      }
+      if (filename !== '') {
+        hasFileError = false;
+      }
+
+      reader.onerror = () => {
+        console.log(reader.error);
+        hasFileError = false;
+      }
+
+    };
   
     toggleValidating(validate) {
       this.setState({ validate });
@@ -63,32 +114,21 @@ import FileUploader from "../../components/FileUpload";
     state = {
         open: false
       };
-    
-    onOpenModal = () => {
-    this.setState({ open: true });
-    };
-
-    onCloseModal = () => {
-    this.setState({ open: false });
-    };
   
     render() {
       const { name, disease, technique, validate, open } = this.state;
+      // const hiddenFileInput = null;
   
       return (
         <div
           style={{
-            padding: "50px",
+            padding: "5px",
           }}
         >
           
           <form onSubmit={this.validateForm}>
-
-          <div class="container">
-
-                <div class="item" position="fixed">
-
-                  <Box fontWeight={"bold"} fontSize="15pt" marginBottom={"1vh"} letterSpacing="1pt">
+          
+          <Box fontWeight={"bold"} fontSize="15pt" marginBottom={"1vh"} letterSpacing="1pt">
                     Name
                   </Box>
                   <div>
@@ -120,7 +160,7 @@ import FileUploader from "../../components/FileUpload";
                           minHeight:"7vh",
                           maxHeight:"7vh",
                           textAlign:"center",
-                          fontSize:"12pt"
+                          fontSize:"12pt",
                         }} // Optional.[Object].Default: {}.
                         customStyleWrapper={{}} // Optional.[Object].Default: {}.
                         customStyleContainer={{
@@ -144,15 +184,11 @@ import FileUploader from "../../components/FileUpload";
                       }}
                       />
                   </div>
-                </div>   
 
-                <Spacer size="lg"/>
-
-                <div class="item" position="fixed"> 
-                  <Box fontWeight={"bold"} fontSize="15pt" marginBottom={"1vh"} letterSpacing="1pt">
+                  <Box fontWeight={"bold"} fontSize="15pt" marginBottom={"1vh"} marginTop={"3vh"} letterSpacing="1pt">
                     Prediction
                   </Box>
-                  <div>
+                  <div style={{margin:"0 0 2vw 35vw"}}>
                       <Select
                         attributesWrapper={{}}
                         attributesInput={{
@@ -174,27 +210,31 @@ import FileUploader from "../../components/FileUpload";
                         classNameOptionListItem="" // Optional.[String].Default: "".
                         customStyleSelect={{
                           fontSize:"12pt",
-                          textAlign:"center"
+                          textAlign:"center",
+                          width:"100%",
+                          minWidth:"20vw",
+                          maxWidth:"20vw",
                         }} // Optional.[Object].Default: {}.
                         customStyleWrapper={{
                           fontSize:"12pt",
-                          textAlign:"center"
+                          textAlign:"center",
+                          width:"100%",
+                          minWidth:"20vw",
+                          maxWidth:"20vw",
                         }} // Optional.[Object].Default: {}.
                         customStyleContainer={{
                           // width: "100%",
                           // minWidth: "200px",
                           // maxWidth: "200px",
-                          // border:"2px solid #BBC8D4", 
-                          // borderRadius:"20px",
                           border:"2px solid #BBC8D4", 
-                          borderRadius:"15px", 
+                          borderRadius:"20px",
                           padding:"0.5px", 
                           width:"100%", 
                           minWidth:"20vw", 
                           maxWidth:"20vw",
                           height:"100%",
-                          minHeight:"7vh",
-                          maxHeight:"7vh",
+                          minHeight:"5vh",
+                          maxHeight:"5vh",
                           fontSize:"12pt",
                           textAlign:"center"
                           
@@ -203,10 +243,16 @@ import FileUploader from "../../components/FileUpload";
                           // overflow: "auto",
                           fontSize:"12pt",
                           textAlign:"center",
+                          width:"100%",
+                          minWidth:"20vw",
+                          maxWidth:"20vw",
                         }} // Optional.[Object].Default: {}.
                         customStyleOptionListItem={{
                           fontSize:"12pt",
-                          textAlign:"center"
+                          textAlign:"center",
+                          width:"100%",
+                          minWidth:"20vw",
+                          maxWidth:"20vw",
                         }} // Optional.[Object].Default: {}.
                         onChange={(res, e) => {
                           this.setState({ disease: res.id });
@@ -222,23 +268,26 @@ import FileUploader from "../../components/FileUpload";
                       }}
                       />
                   </div>
-                </div>
             
-                <Spacer size="lg"/>
 
-                <div class="item" position="fixed"> 
-                <Box fontWeight={"bold"} fontSize="15pt" marginBottom={"1vh"} letterSpacing="1pt">
-                          DNA Sequence
-                        </Box>
-                        <div style={{border:"2px solid #BBC8D4", borderRadius:"15px", padding:"0.1px", width:"100%", minWidth:"18vw", maxWidth:"18vw"}}>
-                          <FileUploader/>
-                        </div>
-                </div>
-
-            
+            <Box fontWeight={"bold"} fontSize="15pt" marginBottom={"1vh"} letterSpacing="1pt">
+              DNA Sequence
+            </Box>
+            {/* border:"2px solid #BBC8D4", */}
+            <div align="center" justifyContent="center" style={{ borderRadius:"15px", padding:"0.1px", width:"100%", minWidth:"18vw", maxWidth:"18vw", height:"100%", minHeight:"7vh", maxHeight:"7vh"}}>
+              {/* {this.state.filename}
+              <Button>
+                Upload
+              </Button> */}
+              <input type="file"
+                    accept=".txt"
+                    id="customFile"
+                    onChange={this.handleChange}
+                    style={{ width:"100%", minWidth:"16vw", maxWidth:"16vw"}}
+              />
             </div>
 
-            <Box marginTop= {"5vh"} align = "Center">
+            <Box marginTop= {"3vh"} align = "Center">
                 <Box fontWeight={"bold"} fontSize="15pt" marginBottom={"1vh"} letterSpacing="1pt">
                   Technique
                 </Box>

@@ -23,6 +23,7 @@ const FileUploader = props => {
 
   const hiddenFileInput = React.useRef(null);
   const [setFile] = useState('');
+  const fileContent = useState('');
   const [filename, setFilename] = useState('Choose File');
   const [setUploadedFile] = useState({});
 
@@ -33,10 +34,17 @@ const FileUploader = props => {
   const handleChange = event => {
     const fileUploaded = event.target.files[0];
     const filename = fileUploaded.name;
+    const reader = new FileReader();
     const formData = new FormData();
     formData.append('file', fileUploaded);
 
-    setFile(fileUploaded);
+    reader.readAsText(fileUploaded);
+    reader.onload = () => {
+      this.setState({fileContent : reader.result});
+      console.log(reader.result);
+    }
+
+    // setFile(fileUploaded);
     setFilename(event.target.files[0].name);
     setUploadedFile({filename, fileUploaded});
 
