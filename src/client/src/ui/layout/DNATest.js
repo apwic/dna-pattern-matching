@@ -9,9 +9,10 @@ import Information from "../../components/Information";
 import Result from "../../components/Result";
 // import { Button, ButtonToolBar} from "react-bootstrap"
 import dnatest from '../../assets/dnatest.png'
+import apiClient from "../../http-common.js";
 
 function DNATestPage(){
-  const [setData] = useState(null)
+  const [data, setData] = useState(null)
 
   function getData(val){
     setData(val.target.value)
@@ -22,7 +23,25 @@ function DNATestPage(){
     e.preventDefault();
     console.log('You clicked submit.');
   }
-  
+
+  async function getDNATest() {
+    try{
+      const response = await apiClient.get('dnatest/get-latest');
+      const result = {
+        status: response.status + "-" + response.statusText,
+        headers: response.headers,
+        data: response.data
+      };
+      const data = result.data;
+      return data[0];
+    } catch (err) {
+      console.log(err.response?.data || err);
+    }
+  }
+
+  // getDNATest().then(data => (setData(data)));
+  // console.log(data);
+
   return (
         <div className='dnatest'>
             <Flex align="center" justify="center" style={{height : "20vh", width : "93.3vw", marginLeft : "5vw", backgroundColor : "#E1E5F1"}}>
@@ -36,7 +55,7 @@ function DNATestPage(){
             </Box>
 
             <Box backgroundColor={"#C0DBF8"} borderRadius="15pt" marginTop={"5vh"} marginBottom={"5vh"} marginLeft={"12vw"} width={"77vw"}>
-              <Result/>
+              <Result props={data}/>
             </Box>
         </div>
       );

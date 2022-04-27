@@ -6,9 +6,9 @@ import { CircularProgressbar, CircularProgressbarWithChildren, buildStyles
 } from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
 
-const percentage = 75;
 
-function Result(){
+const Result = (data) => {
+  console.log(data.props);
     return(
         <div>
             <div>
@@ -28,7 +28,7 @@ function Result(){
                             </Box>
 
                             <Box padding={"2"} fontSize={"17pt"} marginTop={"1vw"}>
-                                Siapa gitu misal namanya
+                                {data.props.NamaPengguna}
                             </Box>
                         </Flex>
 
@@ -38,7 +38,7 @@ function Result(){
                             </Box>
 
                             <Box padding={"2"} fontSize={"17pt"} marginTop={"0.5vw"}>
-                                26 April 2022
+                                {data.props.Tanggal}
                             </Box>
                         </Flex>
 
@@ -48,7 +48,7 @@ function Result(){
                             </Box>
 
                             <Box padding={"2"} fontSize={"17pt"}  marginTop={"1vw"}>
-                                Apa gitu misal penyakitnya
+                                {data.props.Penyakit}
                             </Box>
                         </Flex>
 
@@ -72,8 +72,8 @@ function Result(){
                                 >
                                     {/* Foreground path */}
                                     <CircularProgressbar
-                                    value={percentage}
-                                    text={`${percentage}%`}
+                                    value={data.props.Kemiripan}
+                                    text={`${data.props.Kemiripan}%`}
                                     styles={buildStyles({
                                         textColor: "black",
                                         trailColor: "transparent",

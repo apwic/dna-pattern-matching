@@ -38,6 +38,20 @@ TesDNA.getAll = (result) => {
   });
 };
 
+// GET LATEST
+TesDNA.getLatest = (result) => {
+  sql.query("SELECT * FROM TesDNA ORDER BY Tanggal DESC LIMIT 1", (err, res) => {
+    if (err) {
+      console.log("error: ", err);
+      result(null, err);
+      return;
+    }
+
+    console.log("TesDNA: ", res);
+    result(null, res);
+  });
+}
+
 // FIND BY Penyakit
 TesDNA.findByPenyakit = (penyakit, result) => {
   sql.query(`SELECT * FROM TesDNA WHERE Penyakit = ${penyakit}`, (err, res) => {
