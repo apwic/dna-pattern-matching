@@ -59,7 +59,8 @@ function DNATestPage(){
       e.preventDefault();
       setFormErrors(validate(formValues));
       setIsSubmit(true);
-      createDNAtest(e).then(res => {getDNATest(e)});
+      createDNAtest(e);
+      // createDNAtest(e).then(res => {getDNATest(e)});
       scrollToRef.current.scrollIntoView({behavior: "smooth"});
   };
 
@@ -91,14 +92,15 @@ function DNATestPage(){
           });
         }
         const result = {
-          status: response.status + "-" + response.statusText,
+          status: response.status,
           headers: response.headers,
           data: response.data
         };
+        console.log(result);
         if (response.status === 200){
           alert("Success");
+          getDNATest(e);
         }
-        console.log(result);
       } catch (err) {
         console.log(err.response?.data || err);
       }
@@ -117,11 +119,7 @@ function DNATestPage(){
       const data = result.data;
       console.log(data);
       setDiseaseList(data);
-      // for(let i=0; i<data.length; i++){
-      // }
-      // setGetResult(formatResponse(result));
     } catch (err) {
-      // setGetResult(formatResponse(err.response?.data || err));
       console.log(err.response?.data || err);
     }
   }
