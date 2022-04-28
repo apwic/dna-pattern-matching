@@ -4,7 +4,7 @@ import * as FaIcons from 'react-icons/fa';
 
 function Search() {
     function handleSubmit(e){
-
+      
     }
     return (
         <form onSubmit={handleSubmit}>

@@ -19,6 +19,8 @@ exports.createTesDNAKMP = (req, res) => {
           err.message || "Some error occurred while creating the TesDNA."
       });
     } else {
+      console.log(req.body);
+      console.log(penyakit);
       const kemiripan = Algo.kmpMatch(req.body.sekuens, penyakit[0].Sekuens);
       let status = 0;
   
@@ -69,7 +71,7 @@ exports.createTesDNABM = (req, res) => {
       const kemiripan = Algo.boyerMooreMatch(req.body.sekuens, penyakit[0].Sekuens);
       let status = 0;
   
-      if (kemiripan == 100){
+      if (kemiripan >= 80){
         status = 1;
       } 
   
@@ -107,6 +109,18 @@ exports.getAllTesDNA = (req, res) => {
     else res.send(data);
   })
 };
+
+// GET Latest
+exports.getLatestTesDNA = (req, res) => {
+  TesDNA.getLatest((err, data) => {
+    if (err)
+      res.status(500).send({
+        message:
+          err.message || "Some error occurred while retrieving TesDNA."
+      });
+    else res.send(data);
+  })
+}
 
 // GET by Tanggal
 exports.getTesDNAbyTanggal = (req, res) => {
