@@ -65,9 +65,24 @@ function HistoryPage(){
     }
     return errors;
   }
+  async function getInitialHistory()
+  {
+    try{
+      let response;
+        response = await apiClient.get('history/get-all-tes-dna');
+      const result = {
+        status: response.status,
+        headers: response.headers,
+        data: response.data
+      };
+      console.log(result);
+      setHistory(result.data);
+    }
+    catch {}
+  };
 
-  
   return (
+    getInitialHistory(),
     <VStack p={4}>
       <Heading
       mb='2'
