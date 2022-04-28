@@ -1,4 +1,4 @@
-import { Button, FormControl,Input, Box, Flex, Spacer, Heading, Image, position, VStack, HStack, Badge } from "@chakra-ui/react";
+import { useToast, Button, FormControl,Input, Box, Flex, Spacer, Heading, Image, position, VStack, HStack, Badge } from "@chakra-ui/react";
 import React, { useState, useEffect } from "react";
 import './DNATest.css'
 import DiseaseForm from "./DiseaseForm";
@@ -15,6 +15,7 @@ function AddDiseasePage(){
   const [isSubmit, setIsSubmit] = useState(false);
   const hiddenFileInput = useRef(null);
   const [filename, setFilename] = useState('Choose File');
+  const toast = useToast()
 
   const handleClick = event => {
     hiddenFileInput.current.click();
@@ -45,7 +46,12 @@ function AddDiseasePage(){
         setFormValues({...formValues, sekuens: reader.result})
         console.log(reader.result);
       } else {
-        alert("DNA sequence must be only A, C, G, T");
+        // alert("DNA sequence must be only A, C, G, T");
+        toast({
+          title: 'DNA sequence must be only A, C, G, T.',
+          status: 'error',
+          isClosable: true,
+        })
       }
     }
 
@@ -65,15 +71,24 @@ function AddDiseasePage(){
 
   async function createDisease(e) {
     try{
-      const response = await apiClient.post('penyakit/create-penyakit', formValues);
-      const result = {
-        status: response.status + "-" + response.statusText,
-        headers: response.headers,
-        data: response.data
-      };
-      const data = result.data;
-      return data;
-    } catch (err) {
+      if (formValues.sekuens !== ""){
+        const response = await apiClient.post('penyakit/create-penyakit', formValues);
+        const result = {
+          status: response.status + "-" + response.statusText,
+          headers: response.headers,
+          data: response.data
+        };
+        const data = result.data;
+        toast({
+          title: 'Success! New Disease has been added.',
+          status: 'success',
+          isClosable: true,
+        })
+        return data;
+      } 
+      setFormValues(initialValue);
+    }
+    catch (err) {
       console.log(err.response?.data || err);
     }
   }
