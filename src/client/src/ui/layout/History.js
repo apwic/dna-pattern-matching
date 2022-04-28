@@ -77,17 +77,20 @@ function HistoryPage(){
         HISTORY
       </Heading >
 
-      <HStack p = '10'>
+        <VStack p = '10px'>
+      <HStack >
           <FormControl isRequired>
-            <Input name='search'  placeholder='Input your namapengguna here' value={formValues.search}
+            <Input name='search'  placeholder='Input the query here' value={formValues.search}
             onChange = {handleChange}
+            maxW = '480px'
             />
-          <Badge>{formErrors.search}</Badge>
           </FormControl>
         <Button colorScheme='teal' variant='solid' onClick={handleSubmit} type= 'submit'>
             <FaIcons.FaSearch size={"80%"}/>
         </Button>
       </HStack>
+            <Badge colorScheme='red'>{formErrors.search}</Badge>
+          </VStack>
 
       <Box marginLeft={"10vw"} width="100%" minWidth={"70vw"} maxWidth={"70vw"}>
         <HistoryStack history={history}/>

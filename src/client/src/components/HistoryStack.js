@@ -6,8 +6,13 @@ import {Box, HStack, IconButton, VStack, Text, StackDivider, Spacer, Accordion,
     AccordionIcon,
     Heading} from '@chakra-ui/react'
 import {MdExpandMore} from 'react-icons/md'
+import Merah from './Merah'
+import TanggalFormat from './TanggalFormat'
+import Status from './Status'
 
 function HistoryStack({history}) {
+
+
     return(
         <Accordion allowToggle 
         divider={<StackDivider />}
@@ -30,28 +35,40 @@ function HistoryStack({history}) {
             >
                 <h2>
                     <AccordionButton _expanded={{ bg: '#012B39', color: 'white' }} borderRadius='lg'>
-                        <Box flex='1' textAlign='left'>
-                            <Heading size= 'md'>
-                              {item.NamaPengguna}
-                            </Heading>
+                        <Box flex='1' w= '100%'>
+                            <VStack w='100%' alignItems = 'strech'>
+                                <HStack>
+                                    <Heading size= 'md'>
+                                        {item.NamaPengguna}
+                                    </Heading>
+                                    <Spacer/>
+                                        {/* <Heading size= 'md' color = '#C53030'>
+                                            {item.Penyakit}
+                                        </Heading> */}
+                                        <Merah Penyakit= {item} />
+
+                                </HStack>
+                            </VStack>
                         </Box>
                         <AccordionIcon />
                     </AccordionButton>
                 </h2>
                 <AccordionPanel pb={4}>
                     <VStack>
+                        <TanggalFormat tanggal= {item.Tanggal} />
                         <Heading size= 'base'>
                             Penyakit: {item.Penyakit}
                         </Heading>
                         <Heading size= 'base'>
-                            Kemiripan: {item.Kemiripan}
+                            Kemiripan: {item.Kemiripan}%
                         </Heading>
-                        <Heading size= 'base'>
+                        <Status status = {item.Status} />
+                        {/* <Heading size= 'base'>
                             Status: {item.Status}
-                        </Heading>
-                        <Heading size= 'base'>
+                        </Heading> */}
+                        {/* <Heading size= 'base'>
                             Tanggal: {item.Tanggal}
-                        </Heading>
+                        </Heading> */}
                     </VStack>
                 </AccordionPanel>
             </AccordionItem>
