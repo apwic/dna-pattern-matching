@@ -1,42 +1,45 @@
-# Tubes3_13520044
-> Outline a brief description of your project.
+# DNA Test
+---
+> Web-based application that provides a platform for users to analyze the presence of a disease based on DNA Sequences.
 > Live demo [_here_](https://www.example.com). <!-- If you have the project hosted somewhere, include the link here. -->
 
 ## Table of Contents
-- [Tubes3_13520044](#tubes3_13520044)
-  - [Table of Contents](#table-of-contents)
-  - [General Information](#general-information)
-  - [Technologies Used](#technologies-used)
-  - [Features](#features)
-  - [Screenshots](#screenshots)
-  - [Setup](#setup)
-  - [Usage](#usage)
-  - [Project Status](#project-status)
-  - [Room for Improvement](#room-for-improvement)
-  - [Acknowledgements](#acknowledgements)
-  - [Contact](#contact)
+- [# DNA Test](#-dna-test)
+- [Table of Contents](#table-of-contents)
+- [General Information](#general-information)
+- [## Creator](#-creator)
+- [Features](#features)
+- [Technologies Used](#technologies-used)
+- [Screenshots](#screenshots)
+- [Setup](#setup)
+- [Usage](#usage)
+- [Project Status](#project-status)
+- [Room for Improvement](#room-for-improvement)
+- [Acknowledgements](#acknowledgements)
 <!-- * [License](#license) -->
 
 
 ## General Information
-- Provide general information about your project here.
-- What problem does it (intend to) solve?
-- What is the purpose of your project?
-- Why did you undertake it?
-<!-- You don't have to answer all the questions - just the ones relevant to your project. -->
+> DNA Test is a web application that provides a platform for users to analyze the presence of a disease based on DNA Sequences. Methodology used by this DNA Test Web implements Knuth-Morris-Pratt algorithm, Bayer-Moore algorithm, Levenshtein algorithm, brute force algorithm, and regular expression algorithm. 
+
+## Creator
+---
+| Name | NIM |
+| ---  | --- |
+|Adiyansa Prasetya Wicaksana  | 13520044 
+|Januar Budi Ghifari | 13520132
+|Rania Dwi Fadhilah | 13520142
+
+## Features
+- Analyze Presence of a Disease based on DNA Sequences
+- Add a new disease
+- Look for search history
 
 
 ## Technologies Used
 - Tech 1 - version 1.0
 - Tech 2 - version 2.0
 - Tech 3 - version 3.0
-
-
-## Features
-List the ready features here:
-- Awesome feature 1
-- Awesome feature 2
-- Awesome feature 3
 
 
 ## Screenshots
@@ -74,18 +77,5 @@ To do:
 
 
 ## Acknowledgements
-Give credit here.
-- This project was inspired by...
-- This project was based on [this tutorial](https://www.example.com).
-- Many thanks to...
-
-
-## Contact
-Created by [@flynerdpl](https://www.flynerd.pl/) - feel free to contact me!
-
-
-<!-- Optional -->
-<!-- ## License -->
-<!-- This project is open source and available under the [... License](). -->
-
-<!-- You don't have to include all sections - just the one's relevant to your project -->
+This project was made in order to fulfill the 3rd **Tugas Besar Mata Kuliah IF2211 Strategi Algoritma** from **Institut Teknologi Bandung**.
+[Specification](doc/Tugas-Besar-3-IF2211-Strategi-Algoritma-2022.pdf)
