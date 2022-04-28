@@ -36,7 +36,7 @@
     width: "100%";
     min-width: 14vw;
     max-width: 14vw;
-    height: 100vh;
+    height: 100%;
     display: flex;
     justify-content: center;
     position: fixed;

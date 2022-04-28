@@ -117,11 +117,12 @@ function AddDiseasePage(){
                         minWidth = "20vw"
                         maxWidth = "20vw"
                         />
-                        <Badge variant="solid" colorScheme='red'>{formErrors.namapenyakit}</Badge>
+                        
                     </FormControl>
+                    <Badge variant="solid" colorScheme='red'>{formErrors.namapenyakit}</Badge>
             </VStack>
             <VStack px = '10' marginLeft={"10vw"} marginRight={"10vw"}>
-              <Box font="Poppins" fontWeight={"bold"} fontSize="20pt" marginBottom={"1vh"} letterSpacing="0.5pt">
+              <Box font="Poppins" fontWeight={"bold"} fontSize="20pt" marginBottom={"1vh"} marginLeft="2vh" letterSpacing="0.5pt">
                       DNA Sequence
                     </Box>
                     <Flex>
