@@ -144,7 +144,7 @@ exports.searchTesDNA = (req, res) => {
       } else { res.send(data); }
     });
   } else if (query.type === 2){
-    TesDNA.findByTanggalAndPenyakit(query.tanggal, query.penyakit, (err, data) => {
+    TesDNA.findByPenyakitAndTanggal(query.penyakit, query.tanggal, (err, data) => {
       if (err) {
         if (err.kind === "not_found") {
           res.status(404).send({

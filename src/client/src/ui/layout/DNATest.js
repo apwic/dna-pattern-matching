@@ -91,6 +91,7 @@ function DNATestPage(){
     // const {technique, name, disease, fileContent} = e.target.values;
     // console.log(technique, name, disease, fileContent);
     try{
+      if (formValues.sekuens !== ""){
         let response;
         if (formValues.technique === "KMP") {
           response = await apiClient.post('dnatest/create-tes-dna-kmp', {
@@ -114,7 +115,6 @@ function DNATestPage(){
         };
         console.log(result);
         if (response.status === 200){
-          setFormValues(initialValue);
           // alert("Success");
           toast({
             title: 'Success! Your DNA test has been created.',
@@ -123,9 +123,11 @@ function DNATestPage(){
           })
           getDNATest(e);
         }
-      } catch (err) {
-        console.log(err.response?.data || err);
       }
+      setFormValues(initialValue);
+    } catch (err) {
+      console.log(err.response?.data || err);
+    }
   }
 
 
