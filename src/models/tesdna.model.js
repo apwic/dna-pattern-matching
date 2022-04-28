@@ -54,7 +54,7 @@ TesDNA.getLatest = (result) => {
 
 // FIND BY Penyakit
 TesDNA.findByPenyakit = (penyakit, result) => {
-  sql.query(`SELECT * FROM TesDNA WHERE Penyakit = ${penyakit}`, (err, res) => {
+  sql.query("SELECT * FROM TesDNA WHERE Penyakit = ?", [penyakit], (err, res) => {
     if (err) {
       console.log("error: ", err);
       result(err, null);
@@ -63,36 +63,40 @@ TesDNA.findByPenyakit = (penyakit, result) => {
 
     if (res.length){
       console.log("found " + res.length + " TesDNA" );
-      return(null, res);
+      result(null, res);
+      return;
     }
 
     // not found TesDNA by penyakit
-    return({kind:"not_found"}, null);
+    result({kind:"not_found"}, null);
+    return;
   })
 }
 
 // FIND BY Tanggal
 TesDNA.findByTanggal = (tanggal, result) => {
-  sql.query(`SELECT * FROM TesDNA WHERE Tanggal = ${tanggal}`, (err, res) => {
+  sql.query("SELECT * FROM TesDNA WHERE DATE(Tanggal) = ?", [tanggal], (err, res) => {
     if (err) {
       console.log("error: ", err);
       result(err, null);
       return;
     }
 
-    if (res.length){
+    if (res.length) {
       console.log("found " + res.length + " TesDNA" );
-      return(null, res);
+      result(null, res);
+      return;
     }
 
     // not found TesDNA by Tanggal
-    return({kind:"not_found"}, null);
+    result({kind:"not_found"}, null);
+    return;
   })
 }
 
 // FIND BY Penyakit AND Tanggal
 TesDNA.findByPenyakitAndTanggal = (penyakit, tanggal, result) => {
-  sql.query(`SELECT * FROM TesDNA WHERE Penyakit = ${penyakit} AND Tanggal = ${tanggal}`, (err, res) => {
+  sql.query("SELECT * FROM TesDNA WHERE Penyakit = ? AND DATE(Tanggal) = ?", [penyakit, tanggal], (err, res) => {
     if (err) {
       console.log("error: ", err);
       result(err, null);
@@ -101,11 +105,13 @@ TesDNA.findByPenyakitAndTanggal = (penyakit, tanggal, result) => {
 
     if (res.length){
       console.log("found " + res.length + " TesDNA" );
-      return(null, res);
+      result(null, res);
+      return;
     }
 
     // not found TesDNA by Tanggal
-    return({kind:"not_found"}, null);
+    result({kind:"not_found"}, null);
+    return;
   })
 }
 

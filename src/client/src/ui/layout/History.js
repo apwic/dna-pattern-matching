@@ -1,41 +1,70 @@
-import { Box, Flex, Spacer, Heading, Image, VStack, Button, HStack, Input } from "@chakra-ui/react";
+import { Box, Heading, VStack, Button, HStack, Input , FormControl, Badge} from "@chakra-ui/react";
 import React from "react";
+import { useState, useEffect } from 'react';
 import HistoryStack from '../../components/HistoryStack';
-import Search from '../../components/Search';
 import apiClient from "../../http-common.js"
 import * as FaIcons from 'react-icons/fa';
 
 function HistoryPage(){
+  
   const initiateDNATest = {IdPengguna:"", NamaPengguna: "", Penyakit: "", Kemiripan: "", Status:"", Sekuens: "", Tanggal: ""};
-  const initiateSearch = {Penyakit: "", Tanggal: ""};
-  const [history, setHistory] = React.useState([initiateDNATest]);
-  const [search, setSeatch] = React.useState(initiateSearch);
+  const [history, setHistory] = useState([initiateDNATest]);
+  const initialValue = {search : ""};
+  const [formValues, setFormValues] = useState(initialValue);
+  const [formErrors, setFormErrors] = useState({});
+  const [isSubmit, setIsSubmit] = useState(false);
 
   async function getHistory(e) {
     try{
-      const response = await apiClient.get('history/get-all-tes-dna');
+      let response;
+      if(formValues.search === ""){
+        response = await apiClient.get('history/get-all-tes-dna');
+      } else {
+        response = await apiClient.get('history/search/', {params: {value: formValues.search}});
+      }
       const result = {
-        status: response.status + "-" + response.statusText,
+        status: response.status,
         headers: response.headers,
         data: response.data
       };
       console.log(result);
       setHistory(result.data);
     } catch(err){
+      if (err.status === 404) {
+        alert("Not found!");
+      }
+      setHistory([]);
       console.log(err);
     }
   }
 
   const handleChange = (e) => {
-    const {name, value} = e.target;
-    setSeatch({...search, [name]: value});
-    console.log(search);
+      const {name, value} = e.target;
+      setFormValues({...formValues, [name]: value});
   }
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    setFormErrors(validate(formValues));
+    setIsSubmit(true);
     getHistory(e);
+  };
+
+  useEffect(() => {
+    console.log(formErrors);
+    if(Object.keys(formErrors).length === 0 && isSubmit) {
+        console.log(formValues);
+    }
+  });
+
+  const validate = (values) => {
+    const errors = {};
+    if (!values.search) {
+        errors.search = "Input The Keyword First!";
+    }
+    return errors;
   }
+
   
   return (
     <VStack p={4}>
@@ -48,15 +77,18 @@ function HistoryPage(){
         HISTORY
       </Heading >
 
-      <form onChange={handleChange}>
-            <HStack p = '10'>
-                <Input variant='filled' placeholder='Ketik di sini' />
-                <Button colorScheme='teal' variant='solid' onClick={handleSubmit}>
-                    <FaIcons.FaSearch size={"80%"}/>
-                </Button>
-            </HStack>
-      </form>
-      
+      <HStack p = '10'>
+          <FormControl isRequired>
+            <Input name='search'  placeholder='Input your namapengguna here' value={formValues.search}
+            onChange = {handleChange}
+            />
+          <Badge>{formErrors.search}</Badge>
+          </FormControl>
+        <Button colorScheme='teal' variant='solid' onClick={handleSubmit} type= 'submit'>
+            <FaIcons.FaSearch size={"80%"}/>
+        </Button>
+      </HStack>
+
       <Box marginLeft={"10vw"} width="100%" minWidth={"70vw"} maxWidth={"70vw"}>
         <HistoryStack history={history}/>
       </Box>

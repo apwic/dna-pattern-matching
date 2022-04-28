@@ -1,6 +1,7 @@
 const TesDNA = require("../models/tesdna.model.js");
 const Penyakit = require("../models/penyakit.model.js");
 const Algo = require("../algorithm/algorithm.js")
+const Query = require("../algorithm/query.js");
 
 // CREATE tesDNA
 exports.createTesDNAKMP = (req, res) => {
@@ -122,53 +123,57 @@ exports.getLatestTesDNA = (req, res) => {
   })
 }
 
-// GET by Tanggal
-exports.getTesDNAbyTanggal = (req, res) => {
-  TesDNA.findByTanggal(req.params.tanggal, (err, data) => {
-    if (err) {
-      if (err.kind === "not_found") {
-        res.status(404).send({
-          message: `Not found TesDNA with tanggal ${req.params.tanggal}.`
-        });
-      } else {
-        res.status(500).send({
-          message: "Error retrieving TesDNA with tanggal " + req.params.tanggal
-        });
-      }
-    } else res.send(data);
-  });
-};
+exports.searchTesDNA = (req, res) => {
+  console.log(req.query.value);
+  const query = Query.parseString(req.query.value);
+  console.log(query);
 
-// GET by Penyakit
-exports.getTesDNAbyPenyakit = (req, res) => {
-  TesDNA.findByPenyakit(req.params.penyakit, (err, data) => {
-    if (err) {
-      if (err.kind === "not_found") {
-        res.status(404).send({
-          message: `Not found TesDNA with penyakit ${req.params.penyakit}.`
-        });
-      } else {
-        res.status(500).send({
-          message: "Error retrieving TesDNA with penyakit " + req.params.penyakit
-        });
-      }
-    } else res.send(data);
-  });
-};
-
-// GET tesDNA byTanggalAndPenyakit
-exports.getTesDNAbyTanggalAndPenyakit = (req, res) => {
-  TesDNA.findByTanggalAndPenyakit(req.params.tanggal, req.params.penyakit, (err, data) => {
-    if (err) {
-      if (err.kind === "not_found") {
-        res.status(404).send({
-          message: `Not found TesDNA with tanggal ${req.params.tanggal} and penyakit ${req.params.penyakit}.`
-        });
-      } else {
-        res.status(500).send({
-          message: "Error retrieving TesDNA with tanggal " + req.params.tanggal + " and penyakit " + req.params.penyakit
-        });
-      }
-    } else res.send(data);
-  });
-};
+  if (query.type === 1){
+    TesDNA.findByTanggal(query.tanggal, (err, data) => {
+      console.log(data);
+      if (err) {
+        if (err.kind === "not_found") {
+          res.status(404).send({
+            message: `Not found TesDNA with tanggal ${query.tanggal}.`
+          });
+        } else {
+          res.status(500).send({
+            message: "Error retrieving TesDNA with tanggal " + query.tanggal
+          });
+        }
+      } else { res.send(data); }
+    });
+  } else if (query.type === 2){
+    TesDNA.findByTanggalAndPenyakit(query.tanggal, query.penyakit, (err, data) => {
+      if (err) {
+        if (err.kind === "not_found") {
+          res.status(404).send({
+            message: `Not found TesDNA with tanggal ${query.tanggal} and penyakit ${query.penyakit}.`
+          });
+        } else {
+          res.status(500).send({
+            message: "Error retrieving TesDNA with tanggal " + query.tanggal + " and penyakit " + query.penyakit
+          });
+        }
+      } else { res.send(data); }
+    });
+  } else if (query.type === 3){
+    TesDNA.findByPenyakit(query.penyakit, (err, data) => {
+      if (err) {
+        if (err.kind === "not_found") {
+          res.status(404).send({
+            message: `Not found TesDNA with penyakit ${query.penyakit}.`
+          });
+        } else {
+          res.status(500).send({
+            message: "Error retrieving TesDNA with penyakit " + query.penyakit
+          });
+        }
+      } else { res.send(data); }
+    });
+  } else {
+    res.status(404).send({
+      message: "TesDNA Not found "
+    });
+  }
+}
