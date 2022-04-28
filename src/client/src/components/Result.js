@@ -56,7 +56,7 @@ const Result = (data) => {
 
                     <Flex justifyContent={"center"} alignItems="flex-start" flexDirection={"column"} marginRight="5vw">
 
-                        <Box textColor={"1F7A8C"} alignSelf="center" marginLeft={"3vw"} width="100%" fontWeight={"black"} padding={"2"} marginTop={"1vw"} marginRight="5vw" textAlign={"center"}>
+                        <Box textColor={"#1F7A8C"} alignSelf="center" marginLeft={"3vw"} width="100%" fontWeight={"black"} padding={"2"} marginTop={"1vw"} marginRight="5vw" textAlign={"center"}>
                             DETECTION RESULT
                         </Box>
 
@@ -65,7 +65,7 @@ const Result = (data) => {
                                 <CircularProgressbarWithChildren
                                     value={80}
                                     styles={buildStyles({
-                                    pathColor: "#c64047",
+                                    pathColor: "#FED7D7",
                                     trailColor: "#eee",
                                     strokeLinecap: "butt"
                                     })}

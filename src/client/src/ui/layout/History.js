@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import HistoryStack from '../../components/HistoryStack';
 import apiClient from "../../http-common.js"
 import * as FaIcons from 'react-icons/fa';
+import history from '../../assets/history.png';
 
 function HistoryPage(){
   

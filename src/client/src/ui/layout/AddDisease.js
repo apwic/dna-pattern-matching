@@ -1,15 +1,24 @@
-import { Button, FormControl,Input, Box, Flex, Spacer, Heading, Image, position, VStack, HStack } from "@chakra-ui/react";
+import { Button, FormControl,Input, Box, Flex, Spacer, Heading, Image, position, VStack, HStack, Badge } from "@chakra-ui/react";
 import React, { useState, useEffect } from "react";
 import './DNATest.css'
 import DiseaseForm from "./DiseaseForm";
 import disease from '../../assets/disease.png'
 import apiClient from "../../http-common.js";
+import { useRef } from "react";
+import * as FaIcons from 'react-icons/fa';
+import dispage from '../../assets/dispage.png';
 
 function AddDiseasePage(){
   const initialValue = {namapenyakit : "", sekuens: ""};
   const [formValues, setFormValues] = useState(initialValue);
   const [formErrors, setFormErrors] = useState({});
   const [isSubmit, setIsSubmit] = useState(false);
+  const hiddenFileInput = useRef(null);
+  const [filename, setFilename] = useState('Choose File');
+
+  const handleClick = event => {
+    hiddenFileInput.current.click();
+  };
 
   const handleChange = (e) => {
     const {name, value} = e.target;
@@ -20,6 +29,8 @@ function AddDiseasePage(){
   const handleUpload = event => {
     const pattern = /^[ACGT]+$/g;
     const fileUploaded = event.target.files[0];
+    const filename = fileUploaded.name;
+    setFilename(filename);
     setFormValues({...formValues, filename: fileUploaded.name})
     // const filename = fileUploaded.name;
     const reader = new FileReader();
@@ -85,40 +96,60 @@ function AddDiseasePage(){
   }
   return(
     <VStack>
-      <Box bg='#91ACCA' w='100%' h='140'  color='moon'>
-      <Heading textAlign='center' p='50'>
-        Add Disease
-      </Heading>
-      </Box>
-      <HStack p='50'>
-            <VStack>
-                <Heading>
-                    Disease
-                </Heading>
+      <Flex align="center" justify="center" style={{height : "20vh", width : "93.3vw", marginLeft : "5vw"}}>
+          <Box>
+            <Image boxSize='100%' src={dispage} alt="logo"/>
+          </Box>
+      </Flex>
+      <Box backgroundColor={"#E1E5F1"} marginLeft="7vw" borderRadius="15pt" >
+        <HStack p='50'>
+            <VStack marginLeft="7vw">
+                  <Box font="Poppins" fontWeight={"bold"} fontSize="20pt" marginBottom={"1vh"} letterSpacing="0.5pt">
+                      Disease Name
+                    </Box>
                     <FormControl isRequired>
                         <Input name='namapenyakit'  placeholder='Input disease name here' value={formValues.namapenyakit}
                         onChange = {handleChange}
+                        backgroundColor="white"
+                        border="2px solid #012B39"
+                        borderRadius={"5pt"}
+                        width = "100%"
+                        minWidth = "20vw"
+                        maxWidth = "20vw"
                         />
-                        <p>{formErrors.namapenyakit}</p>
+                        <Badge variant="solid" colorScheme='red'>{formErrors.namapenyakit}</Badge>
                     </FormControl>
             </VStack>
-            <VStack px = '10'>
-                <Heading>
-                    DNA Sequence
-                </Heading>
-                    <FormControl isRequired>
-                        {/* <Input name='dnaSequence' placeholder='First name' value={formValues.dnaSequence} onChange = {handleChange}/> */}
-                        <input type="file"
-                        accept=".txt"
-                        id="customFile"
-                        onChange={handleUpload}
-                        style={{ width:"100%", minWidth:"16vw", maxWidth:"16vw"}}
-                        />
-                        <p>{formErrors.sekuens}</p>
-                    </FormControl>
+            <VStack px = '10' marginLeft={"10vw"} marginRight={"10vw"}>
+              <Box font="Poppins" fontWeight={"bold"} fontSize="20pt" marginBottom={"1vh"} letterSpacing="0.5pt">
+                      DNA Sequence
+                    </Box>
+                    <Flex>
+                        <Box style={{padding:"5pt 0 0 5pt", marginLeft:"5vw", marginTop:"5pt", border: "1px", width:"100%", minWidth:"17vw", maxWidth:"17vw", height:"100%", minHeight:"6vh", maxHeight:"6vh", backgroundColor:"white", borderRadius:"5pt", textAlign:"center"}} className="file-label" htmlFor='customFile'>
+                                {filename}
+                        </Box>
+                      <Button onClick={handleClick} marginTop="1vh" colorScheme={"blue"}>
+                        <FaIcons.FaUpload size={"100%"} />
+                      </Button>
+                        <FormControl isRequired>
+                            {/* <Input name='dnaSequence' placeholder='First name' value={formValues.dnaSequence} onChange = {handleChange}/> */}
+                            <input type="file"
+                            accept=".txt"
+                            ref={hiddenFileInput}
+                            id="customFile"
+                            onChange={handleUpload}
+                            style={{display:'none'}}
+                            />
+                            
+                        </FormControl>
+                  
+                    </Flex>
+                    <Badge variant="solid" colorScheme='red'>{formErrors.sekuens}</Badge>
+                    
             </VStack>
       </HStack>
-      <Button colorScheme='blue' type= 'submit' onClick={handleSubmit}>Submit</Button>
+      <Button marginLeft={"32.5vw"} marginBottom={"5vh"} colorScheme='blue' marginTop={"3vh"} borderRadius={"15pt"} backgroundColor="#91ACCA" type= 'submit' onClick={handleSubmit}>Submit</Button>
+      </Box>
     </VStack>
   );
 }

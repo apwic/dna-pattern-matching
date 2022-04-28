@@ -189,7 +189,7 @@ function DNATestPage(){
                 </Box>
             </Flex>
 
-            <Box align = "Center" marginTop={"3vh"} borderRadius={"20px"} marginLeft={"12vw"} marginRight={"7vw"} width={"80.3vw"} backgroundColor="#E1E5F1" padding={"1pt"}>
+            <Box align = "Center" marginTop={"3vh"} borderRadius={"20px"} marginLeft={"12vw"} marginRight={"7vw"} width={"80.3vw"} backgroundColor="#C0DBF8" padding={"1pt"}>
             <VStack>
               <VStack p = '5px'>
                   <VStack px = '10'>
@@ -284,7 +284,7 @@ function DNATestPage(){
               </VStack>
               
             </VStack>
-              <Box ref={scrollToRef} backgroundColor={"#C0DBF8"} borderRadius="15pt" marginTop={"5vh"} marginBottom={"5vh"} width={"77vw"}>
+              <Box ref={scrollToRef} backgroundColor={"#E1E5F1"} borderRadius="15pt" marginTop={"5vh"} marginBottom={"5vh"} width={"77vw"}>
                 {result}
                 {/* <{result} props={data}/> */}
               </Box>
