@@ -1,6 +1,6 @@
 let text = "How are you doing today?";
 let dateRegex = /[1-31]/g;
-let monthRegex = /Januari|Februari|Maret|April|Mei|Juni|Juli|Agustus|September|Oktober|November|Desember/g;
+let monthRegex = /[Jj]anuari|[Ff]ebruari|[Mm]aret|[Aa]pril|[Mm]ei|[Jj]uni|[Jj]uli|[Aa]gustus|[Ss]eptember|[Oo]ktober|[Nn]ovember|[Dd]esember/g;
 let yearRegex = /[0-9][0-9][0-9][0-9]/g;
 let nameRegex = /^[A-Z][a-z]+/g;
 
@@ -9,6 +9,34 @@ let nameRegex = /^[A-Z][a-z]+/g;
 // 1. Tanggal
 // 2. Tanggal - Nama Penyakit
 // 3. Nama Penyakit
+function monthNumber(month){
+    if (month == January){
+        return 1;
+    } else if (month == February){
+        return 2;
+    } else if (month == March){
+        return 3;
+    } else if (month == April){
+        return 4;
+    } else if (month == May){
+        return 5;
+    } else if (month == June){
+        return 6;
+    } else if (month == July){
+        return 7;
+    } else if (month == August){
+        return 8;
+    } else if (month == September){
+        return 9;
+    } else if (month == October){
+        return 10;
+    } else if (month == November){
+        return 11;
+    } else if (month == December){
+        return 12;
+    }
+}
+
 
 function parseString(array){
     const myArray = array.split(" ");
@@ -18,6 +46,7 @@ function parseString(array){
         let date = myArray[0];
         let month = myArray[1];
         let year = myArray[2];
+        let query = [];
         console.log(date + " " + month + " " + year);
         let dateReg = date.match(dateRegex);
         let monthReg = month.match(monthRegex);
@@ -76,7 +105,7 @@ function parseString(array){
     return 0;
 }
 
-let contoh = "13 April 2022"
+let contoh = "13 april 2022"
 let contoh2 = "13 April 2022 Penyakit"
 let contoh3 = "Penyakit"
 let contoh4 = "Penyakit Parah Banget"

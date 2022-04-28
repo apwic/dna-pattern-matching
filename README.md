@@ -7,7 +7,7 @@
 - [# DNA Test](#-dna-test)
 - [Table of Contents](#table-of-contents)
 - [General Information](#general-information)
-- [## Creator](#-creator)
+- [Creator](#creator)
 - [Features](#features)
 - [Technologies Used](#technologies-used)
 - [Screenshots](#screenshots)
@@ -23,7 +23,6 @@
 > DNA Test is a web application that provides a platform for users to analyze the presence of a disease based on DNA Sequences. Methodology used by this DNA Test Web implements Knuth-Morris-Pratt algorithm, Bayer-Moore algorithm, Levenshtein algorithm, brute force algorithm, and regular expression algorithm. 
 
 ## Creator
----
 | Name | NIM |
 | ---  | --- |
 |Adiyansa Prasetya Wicaksana  | 13520044 
