@@ -8,6 +8,7 @@ import dnatest from '../../assets/dnatest.png';
 // import NyobaInput from './NyobaInput.js';
 import apiClient from "../../http-common.js";
 import { useRef } from "react";
+import * as FaIcons from 'react-icons/fa';
 
 function DNATestPage(){
   let status = false;
@@ -21,6 +22,8 @@ function DNATestPage(){
   const [isSubmit, setIsSubmit] = useState(false);
   const [result, setResult] = useState(Information);
   const scrollToRef = useRef();
+  const [filename, setFilename] = useState('Choose File');
+  const hiddenFileInput = useRef(null);
 
   const handleChange = (e) => {
       const {name, value} = e.target;
@@ -28,10 +31,17 @@ function DNATestPage(){
       console.log(formValues);
   }
 
+  const handleClick = event => {
+    hiddenFileInput.current.click();
+  };
+
+
   const handleUpload = event => {
       const pattern = /^[ACGT]+$/g;
       const fileUploaded = event.target.files[0];
+      const filename = fileUploaded.name;
       setFormValues({...formValues, filenamapengguna: fileUploaded.name})
+      setFilename(event.target.files[0].name);
       // const filenamapengguna = fileUploaded.namapengguna;
       const reader = new FileReader();
       const formData = new FormData();
@@ -224,22 +234,28 @@ function DNATestPage(){
                     <Box font="Poppins" fontWeight={"bold"} fontSize="20pt" marginBottom={"1vh"} letterSpacing="0.5pt">
                       DNA Sequence
                     </Box>
+                    <Flex>
+                        <Box style={{padding:"4pt 0 0 0", marginLeft:"5vw", marginTop:"5pt", border: "1px", width:"100%", minWidth:"17vw", maxWidth:"17vw", height:"100%", minHeight:"6vh", maxHeight:"6vh", backgroundColor:"white", borderRadius:"5pt"}} className="file-label" htmlFor='customFile'>
+                            {filename}
+                          </Box>
+                          <Button onClick={handleClick} marginTop="1vh" colorScheme="blue">
+                            <FaIcons.FaUpload size={"200%"} />
+                          </Button>
                           <FormControl isRequired>
                               {/* <Input namapengguna='dnaSequence' placeholder='First namapengguna' value={formValues.dnaSequence} onChange = {handleChange}/> */}
                               <input type="file"
                               accept=".txt"
                               id="customFile"
+                              ref={hiddenFileInput}
                               onChange={handleUpload}
                               style={{ 
-                                width:"100%", 
-                                minWidth:"20vw", 
-                                maxWidth:"20vw",
-                                backgroundColor:"white",
-                                borderRadius:"5pt",
+                                display: "none",
                               }}
                               />
             
                           </FormControl>
+                    </Flex>
+      
                           <Badge variant="solid" colorScheme='red'>{formErrors.sekuens}</Badge>
                   </VStack>
               <Box font="Poppins" fontWeight={"bold"} fontSize="20pt" marginBottom={"1vh"} letterSpacing="0.5pt">

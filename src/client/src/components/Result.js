@@ -12,7 +12,7 @@ const Result = (data) => {
     return(
         <div>
             <div>
-                <Box align="center" fontWeight="bold" padding={"5"} fontSize="20pt" textDecorationLine={"underline"} fontStyle={"italic"} >
+                <Box align="center" fontWeight="extrabold" padding={"5"} fontSize="20pt" textDecorationLine={"underline"} fontStyle={"italic"} >
                     Analysis Result
                 </Box>           
             </div>
@@ -27,7 +27,7 @@ const Result = (data) => {
                                 NAME
                             </Box>
 
-                            <Box padding={"2"} fontSize={"17pt"} marginTop={"1vw"}>
+                            <Box padding={"2"} fontSize={"17pt"} marginTop={"1vw"} fontWeight="bold">
                                 {data.NamaPengguna}
                             </Box>
                         </Flex>
@@ -37,17 +37,17 @@ const Result = (data) => {
                                 DATE
                             </Box>
 
-                            <Box padding={"2"} fontSize={"17pt"} marginTop={"0.5vw"}>
-                                {data.Tanggal}
+                            <Box padding={"2"} fontWeight="bold" fontSize={"17pt"} marginTop={"0.5vw"}>
+                                {(data.Tanggal).toString().slice(0,10)}
                             </Box>
                         </Flex>
 
                         <Flex alignItems={"center"} justifyContent={"flex-start"} flexDirection="row">
-                            <Box justifyContent="flex-start" fontSize={"8pt"} padding="2" borderRadius={"5pt"} width="100%" minWidth={"5vw"} maxWidth={"5vw"} mt="5" fontWeight="bold" marginLeft={"5vw"} backgroundColor="#C4C4C4" >
+                            <Box justifyContent="flex-start"  fontSize={"8pt"} padding="2" borderRadius={"5pt"} width="100%" minWidth={"5vw"} maxWidth={"5vw"} mt="5" fontWeight="bold" marginLeft={"5vw"} backgroundColor="#C4C4C4" >
                                 DISEASE
                             </Box>
 
-                            <Box padding={"2"} fontSize={"17pt"}  marginTop={"1vw"}>
+                            <Box padding={"2"} fontSize={"17pt"} fontWeight="bold"  marginTop={"1vw"}>
                                 {data.Penyakit}
                             </Box>
                         </Flex>
@@ -75,7 +75,8 @@ const Result = (data) => {
                                     value={data.Kemiripan}
                                     text={`${data.Kemiripan}%`}
                                     styles={buildStyles({
-                                        textColor: "black",
+                                        textColor: "#1A365D",
+                                        fontWeight: "bold",
                                         trailColor: "transparent",
                                         strokeLinecap: "butt"
                                     })}

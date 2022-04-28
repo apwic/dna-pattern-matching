@@ -1,11 +1,12 @@
 import React, {useState} from "react";
-import { Box, Flex, Spacer, Heading, Image, position } from "@chakra-ui/react";
+import { Box, Text } from "@chakra-ui/react";
+import "./Information.css"
 
 function Information(){
     return(
         <div>
             <div>
-                <Box align="center" fontWeight="bold" padding={"5"} fontSize="20pt" textDecorationLine={"underline"} fontStyle={"italic"} >
+                <Box align="center" fontWeight="extrabold" padding={"5"} fontSize="20pt" textDecorationLine={"underline"} fontStyle={"italic"} >
                     Information
                 </Box>           
             </div>
@@ -15,26 +16,22 @@ function Information(){
                     DNA Sequence Input
                 </Box>
 
-                <Box justifyContent="flex-start" mt="5" marginLeft={"5vw"} marginRight={"5vw"}>
-                    <p>
+                <Box mt="5" marginLeft={"5vw"} marginRight={"5vw"}>
+                    <Text className={"font-link"} fontWeight="bold">
                     Consists of only ACGT Characters (all uppercase), with no whitespaces and length of sequence is less than length of disease sequence
-                    </p>
-
-                    <p>
+                    </Text>
+                    <Text textColor={"green.500"} fontWeight="bold">
                     ACGTACGT
-                    </p>
-
-                    <p>
+                    </Text>
+                    <Text textColor={"red.500"} fontWeight="bold">
                     ACGT ACGT
-                    </p>
-
-                    <p>
+                    </Text>
+                    <Text textColor={"red.500"} fontWeight="bold">
                     acgtACgt
-                    </p>
-
-                    <p>
+                    </Text>
+                    <Text textColor={"red.500"} fontWeight="bold">
                     AUGTACGT
-                    </p>
+                    </Text>
 
                     <div height="100%" style={{minHeight:"5vh"}}/>
                 </Box>
