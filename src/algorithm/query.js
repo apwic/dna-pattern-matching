@@ -1,6 +1,6 @@
 let text = "How are you doing today?";
 let dateRegex = /[1-31]/g;
-let monthRegex = /Januari|Februari|Maret|April|Mei|Juni|Juli|Agustus|September|Oktober|November|Desember/g;
+let monthRegex = /[Jj]anuari|[Ff]ebruari|[Mm]aret|[Aa]pril|[Mm]ei|[Jj]uni|[Jj]uli|[Aa]gustus|[Ss]eptember|[Oo]ktober|[Nn]ovember|[Dd]esember/g;
 let yearRegex = /[0-9][0-9][0-9][0-9]/g;
 let nameRegex = /^[A-Za-z]+/g;
 
@@ -45,6 +45,7 @@ function parseString(array){
         let date = myArray[0];
         let month = myArray[1];
         let year = myArray[2];
+        let query = [];
         console.log(date + " " + month + " " + year);
         let dateReg = date.match(dateRegex);
         let monthReg = month.match(monthRegex);
@@ -99,40 +100,3 @@ function parseString(array){
 }
 
 module.exports = {parseString};
-// let contoh = "13 April 2022"
-// let contoh2 = "13 April 2022 Penyakit"
-// let contoh3 = "Penyakit"
-// let contoh4 = "Penyakit Parah Banget"
-// let contoh5 = "13 April 2022 Penyakit Parah Banget"
-// let contoh6 = "Apasih35"
-// let contoh7 = "3729347"
-
-// let hasil = parseString(contoh);
-// console.log("Input 1 = " + contoh);
-// console.log(hasil);
-// console.log("Contoh 1 = " + hasil + "\n\n");
-
-// hasil = parseString(contoh2);
-// console.log("Input 2 = " + contoh2);
-// console.log(hasil);
-// console.log("Contoh 2 = " +hasil + "\n\n");
-
-// hasil = parseString(contoh3);
-// console.log("Input 3 = " + contoh3);
-// console.log("Contoh 3 = " +hasil + "\n\n");
-
-// hasil = parseString(contoh4);
-// console.log("Input 4 = " + contoh4);
-// console.log("Contoh 4 = " +hasil + "\n\n");
-
-// hasil = parseString(contoh5);
-// console.log("Input 5 = " + contoh5);
-// console.log("Contoh 5 = " +hasil + "\n\n");
-
-// hasil = parseString(contoh6);
-// console.log("Input 6 = " + contoh6);
-// console.log("Contoh 6 = " +hasil + "\n\n");
-
-// hasil = parseString(contoh7);
-// console.log("Input 7 = " + contoh7);
-// console.log("Contoh 7 = " +hasil + "\n\n");
