@@ -1,4 +1,4 @@
-import { Box, Flex, Heading, Image, Button, FormControl, VStack, Select, Input, Stack, RadioGroup, Radio, Badge} from "@chakra-ui/react";
+import { useToast, Box, Flex, Heading, Image, Button, FormControl, VStack, Select, Input, Stack, RadioGroup, Radio, Badge} from "@chakra-ui/react";
 import React, {useEffect, useState} from "react";
 import './DNATest.css'
 import DNAForm from "./DNAForm";
@@ -24,6 +24,7 @@ function DNATestPage(){
   const scrollToRef = useRef();
   const [filename, setFilename] = useState('Choose File');
   const hiddenFileInput = useRef(null);
+  const toast = useToast()
 
   const handleChange = (e) => {
       const {name, value} = e.target;
@@ -54,7 +55,12 @@ function DNATestPage(){
           setFormValues({...formValues, sekuens: reader.result})
           console.log(reader.result);
         } else {
-          alert("DNA sequence must be only A, C, G, T");
+          // alert("DNA sequence must be only A, C, G, T");
+          toast({
+            title: 'DNA sequence must be only A, C, G, T.',
+            status: 'error',
+            isClosable: true,
+          })
         }
       }
 
@@ -108,7 +114,12 @@ function DNATestPage(){
         };
         console.log(result);
         if (response.status === 200){
-          alert("Success");
+          // alert("Success");
+          toast({
+            title: 'Success! Your DNA test has been created.',
+            status: 'success',
+            isClosable: true,
+          })
           getDNATest(e);
         }
       } catch (err) {
