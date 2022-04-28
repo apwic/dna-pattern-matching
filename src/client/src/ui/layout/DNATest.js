@@ -109,6 +109,7 @@ function DNATestPage(){
         console.log(result);
         if (response.status === 200){
           alert("Success");
+          setFormValues(initialValue);
           getDNATest(e);
         }
       } catch (err) {

@@ -58,6 +58,7 @@ function AddDiseasePage(){
   const handleSubmit = (e) => {
     e.preventDefault();
     setFormErrors(validate(formValues));
+    setFormValues(initialValue);
     setIsSubmit(true);
     createDisease(e);
   };
