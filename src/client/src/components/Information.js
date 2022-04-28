@@ -11,7 +11,7 @@ function Information(){
             </div>
 
             <div>
-                <Box justifyContent="flex-start" fontSize={"13pt"} padding="2" borderRadius={"5pt"} width="100%" minWidth={"13vw"} maxWidth={"13vw"} mt="5" fontWeight="bold" marginLeft={"5vw"} backgroundColor="#C4C4C4" >
+                <Box fontSize={"13pt"} padding="2" borderRadius={"5pt"} width="100%" minWidth={"13vw"} maxWidth={"13vw"} mt="5" fontWeight="bold" marginLeft={"0"} backgroundColor="#C4C4C4" >
                     DNA Sequence Input
                 </Box>
 

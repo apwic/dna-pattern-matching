@@ -86,7 +86,7 @@ const Result = (data) => {
 
                         <Flex alignItems={"center"} justifyContent={"flex-start"} flexDirection="row">
                             <Box marginLeft={"1vw"} justifyContent="center" textAlign={"center"} fontSize={"8pt"} padding="2" borderRadius={"5pt"} width="100%" minWidth={"15vw"} maxWidth={"15vw"} mt="5" fontWeight="bold" backgroundColor="#FFFFFF" >
-                                <Box>
+                                <Box textColor={"red"}>
                                     0 - 79 % : NOT DETECTED (FALSE)
                                 </Box>
                                 <Box>
