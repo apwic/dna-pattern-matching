@@ -8,11 +8,10 @@
 - [Creator](#creator)
 - [Features](#features)
 - [Technologies Used](#technologies-used)
-- [Screenshots](#screenshots)
+- [Screenshots Of Page](#screenshots-of-page)
 - [Setup](#setup)
 - [Usage](#usage)
 - [Project Status](#project-status)
-- [Room for Improvement](#room-for-improvement)
 - [Acknowledgements](#acknowledgements)
 <!-- * [License](#license) -->
 
@@ -38,9 +37,11 @@
 - React (Chakra)
 - ExpressJS
 
-## Screenshots
-![Example screenshot](./img/screenshot.png)
-<!-- If you have screenshots you'd like to share, include them here. -->
+## Screenshots Of Page
+![](./test/homepage.png)
+![](./test/dnatest.png)
+![](./test/disease.png)
+![](./test/history.png)
 
 ## Setup
 - Clone this repository
