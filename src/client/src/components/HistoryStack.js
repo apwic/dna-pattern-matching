@@ -14,7 +14,7 @@ import Status from './Status'
 function HistoryStack({history}) {
     if(history.length === 0){
         return(
-          <Box backgroundColor='#91ACCA' borderRadius='lg' h= '100px'  alignItems='center'justifyItems='center'  display ='flex'>
+          <Box backgroundColor='#91ACCA' borderRadius='lg' h= '100px'  alignItems='center'justifyItems='center'  display ='flex' justifyContent='center'>
                 <Badge colorScheme='yellow' p='4' m='4' borderRadius='lg'>
                 No History Found
                 </Badge>
@@ -24,7 +24,7 @@ function HistoryStack({history}) {
 
     if(history[0].NamaPengguna === ''){
         return(
-            <Box backgroundColor='#91ACCA' borderRadius='lg' h= '100px'  alignItems='center'justifyItems='center'  display ='flex'>
+            <Box backgroundColor='#91ACCA' borderRadius='lg' h= '100px'  alignItems='center'justifyItems='center'  display ='flex'justifyContent='center'>
                 <Badge colorScheme='purple' p='4' m='4' borderRadius='lg'>
                 Press Search Button To Show All History
                 </Badge>
