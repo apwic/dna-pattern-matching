@@ -83,7 +83,7 @@ function HistoryPage(){
 
 
   return (
-    <VStack p={4}>
+    <VStack p={4 }align="center" justify="center" ml = '5vw'>
       <Heading
       mb='2'
       fontWeight='extrabold'
