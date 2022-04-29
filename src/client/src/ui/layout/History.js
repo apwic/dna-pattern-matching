@@ -1,4 +1,4 @@
-import { Image, Flex ,Box, Heading, VStack, Button, HStack, Input , FormControl, Badge} from "@chakra-ui/react";
+import { FormHelperText, Image, Flex ,Box, Heading, VStack, Button, HStack, Input , FormControl, Badge} from "@chakra-ui/react";
 import React from "react";
 import { useState, useEffect } from 'react';
 import HistoryStack from '../../components/HistoryStack';
@@ -81,8 +81,9 @@ function HistoryPage(){
     catch {}
   };
 
-
+  
   return (
+    console.log(history),
     <VStack p={4 }align="center" justify="center" ml = '5vw'>
       {/* <Heading
       mb='2'
@@ -92,7 +93,7 @@ function HistoryPage(){
       >
         HISTORY
       </Heading > */}
-      <Flex align="center" justify="center"  py = '1.5vh'>
+      <Flex align="center" justify="center"  py = '5'>
           <Box>
             <Image boxSize='100%' src={tes1} alt="logo1"/>
           </Box>
@@ -105,6 +106,7 @@ function HistoryPage(){
             onChange = {handleChange}
             maxW = '480px'
             />
+            <FormHelperText>Masukkan Waktu atau Nama Penyakit (Contoh: '27 April 2022' atau 'AIDS')</FormHelperText>
           </FormControl>
         <Button colorScheme='teal' variant='solid' onClick={handleSubmit} type= 'submit'>
             <FaIcons.FaSearch size={"80%"}/>

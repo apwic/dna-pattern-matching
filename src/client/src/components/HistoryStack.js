@@ -4,14 +4,33 @@ import {Box, HStack, IconButton, VStack, Text, StackDivider, Spacer, Accordion,
     AccordionButton,
     AccordionPanel,
     AccordionIcon,
-    Heading} from '@chakra-ui/react'
+    Heading,
+    Badge} from '@chakra-ui/react'
 import {MdExpandMore} from 'react-icons/md'
 import Merah from './Merah'
 import TanggalFormat from './TanggalFormat'
 import Status from './Status'
 
 function HistoryStack({history}) {
+    if(history.length === 0){
+        return(
+          <Box backgroundColor='#91ACCA' borderRadius='lg' h= '100px'  alignItems='center'justifyItems='center'  display ='flex'>
+                <Badge colorScheme='yellow' p='4' m='4' borderRadius='lg'>
+                No History Found
+                </Badge>
+          </Box>
+        );
+      }
 
+    if(history[0].NamaPengguna === ''){
+        return(
+            <Box backgroundColor='#91ACCA' borderRadius='lg' h= '100px'  alignItems='center'justifyItems='center'  display ='flex'>
+                <Badge colorScheme='purple' p='4' m='4' borderRadius='lg'>
+                Press Search Button To Show All History
+                </Badge>
+          </Box>
+        );
+      }
 
     return(
         <Accordion allowToggle 
