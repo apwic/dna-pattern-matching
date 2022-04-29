@@ -1,10 +1,10 @@
-import { Box, Heading, VStack, Button, HStack, Input , FormControl, Badge} from "@chakra-ui/react";
+import { Image, Flex ,Box, Heading, VStack, Button, HStack, Input , FormControl, Badge} from "@chakra-ui/react";
 import React from "react";
 import { useState, useEffect } from 'react';
 import HistoryStack from '../../components/HistoryStack';
 import apiClient from "../../http-common.js"
 import * as FaIcons from 'react-icons/fa';
-import history from '../../assets/history.png';
+import tes1 from '../../assets/history.png';
 
 function HistoryPage(){
   
@@ -84,15 +84,20 @@ function HistoryPage(){
 
   return (
     <VStack p={4 }align="center" justify="center" ml = '5vw'>
-      <Heading
+      {/* <Heading
       mb='2'
       fontWeight='extrabold'
       size='2xl'
       p = '19'
       >
         HISTORY
-      </Heading >
-
+      </Heading > */}
+      <Flex align="center" justify="center"  py = '10'>
+          <Box>
+            <Image boxSize='100%' src={tes1} alt="logo1"/>
+          </Box>
+      </Flex>
+      
         <VStack p = '10px'>
       <HStack >
           <FormControl isRequired>
