@@ -81,8 +81,8 @@ function HistoryPage(){
     catch {}
   };
 
+
   return (
-    getInitialHistory(),
     <VStack p={4}>
       <Heading
       mb='2'

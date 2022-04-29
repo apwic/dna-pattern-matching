@@ -74,6 +74,7 @@ function DNATestPage(){
   const handleSubmit = (e) => {
       e.preventDefault();
       setFormErrors(validate(formValues));
+      setResult(Information);
       setIsSubmit(true);
       createDNAtest(e);
       // createDNAtest(e).then(res => {getDNATest(e)});

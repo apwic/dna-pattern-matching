@@ -1,6 +1,6 @@
 module.exports = {
   HOST: "localhost",
   USER: "root",
-  PASSWORD: "29031997",
+  PASSWORD: "",
   DB: "tehbotolsourcecode"
 }
