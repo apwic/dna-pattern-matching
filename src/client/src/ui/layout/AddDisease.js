@@ -1,8 +1,6 @@
 import { useToast, Button, FormControl,Input, Box, Flex, Spacer, Heading, Image, position, VStack, HStack, Badge } from "@chakra-ui/react";
 import React, { useState, useEffect } from "react";
 import './DNATest.css'
-import DiseaseForm from "./DiseaseForm";
-import disease from '../../assets/disease.png'
 import apiClient from "../../http-common.js";
 import { useRef } from "react";
 import * as FaIcons from 'react-icons/fa';
@@ -112,9 +110,9 @@ function AddDiseasePage(){
   }
   return(
     <VStack>
-      <Flex align="center" justify="center" style={{height : "20vh", width : "93.3vw", marginLeft : "5vw"}}>
+      <Flex marginTop="3vh" marginBottom={"3vh"} align="center" justify="center" style={{height : "20vh", width : "93.3vw", marginLeft : "5vw"}}>
           <Box>
-            <Image boxSize='100%' src={dispage} alt="logo"/>
+            <Image marginTop={"4vh"} marginBottom={"4vh"} boxSize='100%' src={dispage} alt="logo"/>
           </Box>
       </Flex>
       <Box backgroundColor={"#E1E5F1"} marginLeft="7vw" borderRadius="15pt" >

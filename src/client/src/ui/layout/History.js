@@ -92,7 +92,7 @@ function HistoryPage(){
       >
         HISTORY
       </Heading > */}
-      <Flex align="center" justify="center"  py = '10'>
+      <Flex align="center" justify="center"  py = '1.5vh'>
           <Box>
             <Image boxSize='100%' src={tes1} alt="logo1"/>
           </Box>

@@ -74,7 +74,6 @@ function DNATestPage(){
   const handleSubmit = (e) => {
       e.preventDefault();
       setFormErrors(validate(formValues));
-      setResult(Information);
       setIsSubmit(true);
       createDNAtest(e);
       // createDNAtest(e).then(res => {getDNATest(e)});
@@ -198,13 +197,13 @@ function DNATestPage(){
 
   return (
         <div className='dnatest'>
-            <Flex align="center" justify="center" style={{height : "20vh", width : "93.3vw", marginLeft : "5vw"}}>
-                <Box>
-                  <Image boxSize='100%' src={dnatest} alt="logo"/>
+            <Flex backgroundColor="#91ACCA" align="center" justify="center" style={{height : "20vh", width : "93.3vw", marginLeft : "5vw"}}>
+                <Box py={"10px"}>
+                  <Image marginTop={"4vh"} marginBottom={"4vh"} boxSize='90%' src={dnatest} alt="logo"/>
                 </Box>
             </Flex>
 
-            <Box mb = '20px' align = "Center" marginTop={"3vh"} borderRadius={"20px"} marginLeft={"12vw"} marginRight={"7vw"} width={"80.3vw"} backgroundColor="#C0DBF8" padding={"1pt"}>
+            <Box align = "Center" marginTop={"3vh"} borderRadius={"20px"} marginLeft={"12vw"} marginRight={"7vw"} width={"80.3vw"} padding={"1pt"}>
             <VStack>
               <VStack p = '5px'>
                   <VStack px = '10'>
@@ -215,7 +214,7 @@ function DNATestPage(){
                               <Input name='namapengguna'  placeholder='Write your name here!' value={formValues.namapengguna}
                               onChange = {handleChange}
                               backgroundColor="white"
-                              border="2px solid #012B39"
+                              border="2px solid #BBC8D4"
                               width = "100%"
                               minWidth = "20vw"
                               maxWidth = "20vw"
@@ -228,6 +227,7 @@ function DNATestPage(){
                       Disease
                     </Box>
                       <Box borderRadius={"5pt"} backgroundColor={"white"} 
+                      border="2px solid #BBC8D4"
                       padding="0 0 0 10pt" 
                       width="100%" minWidth="20vw" maxWidth="20vw"
                       >
@@ -248,7 +248,9 @@ function DNATestPage(){
                       DNA Sequence
                     </Box>
                     <Flex>
-                        <Box style={{padding:"4pt 0 0 0", marginLeft:"5vw", marginTop:"5pt", border: "1px", width:"100%", minWidth:"17vw", maxWidth:"17vw", height:"100%", minHeight:"6vh", maxHeight:"6vh", backgroundColor:"white", borderRadius:"5pt"}} className="file-label" htmlFor='customFile'>
+                        <Box style={{padding:"4pt 0 0 0", marginLeft:"5vw", marginTop:"5pt", 
+                        border: "2px solid #BBC8D4", 
+                        width:"100%", minWidth:"17vw", maxWidth:"17vw", height:"100%", minHeight:"6vh", maxHeight:"6vh", backgroundColor:"white", borderRadius:"5pt"}} className="file-label" htmlFor='customFile'>
                             {filename}
                           </Box>
                           <Button onClick={handleClick} marginTop="1vh" colorScheme="blue">
@@ -299,7 +301,7 @@ function DNATestPage(){
               </VStack>
               
             </VStack>
-              <Box ref={scrollToRef}  backgroundColor={"#E1E5F1"} borderRadius="15pt" marginTop={"5vh"} marginBottom={"5vh"} width={"77vw"}>
+              <Box ref={scrollToRef} backgroundColor={"#E1E5F1"} borderRadius="15pt" marginTop={"5vh"} marginBottom={"5vh"} width={"77vw"}>
                 {result}
                 {/* <{result} props={data}/> */}
               </Box>
