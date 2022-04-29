@@ -1,6 +1,7 @@
 import React from 'react'
 import {HStack, Box, Image, Container, Heading, Button} from '@chakra-ui/react'
 import home from '../assets/homephoto.png'
+import {Link } from "react-router-dom";
 
 function Tryit() {
         return (
@@ -26,9 +27,12 @@ function Tryit() {
                                 Still I have in my eyes
                                 Still I have forever
                             </Box>
+                            <Link to="/DNAtest">
                             <Button mt = "5" color="moon" ml = '45%'>
                                 Try It!
                             </Button>
+                            </Link>
+                            
                         </Box>
                     </Box>
                 </Container>
