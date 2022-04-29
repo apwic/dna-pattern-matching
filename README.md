@@ -3,7 +3,6 @@
 > Tugas Besar 3 Mata Kuliah IF2211 Strategi Algoritma ITB.
 
 ## Table of Contents
-- [# DNA Test](#-dna-test)
 - [Table of Contents](#table-of-contents)
 - [General Information](#general-information)
 - [Creator](#creator)
