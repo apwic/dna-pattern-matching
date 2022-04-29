@@ -1,12 +1,12 @@
 import React from 'react'
-import {Box, HStack, IconButton, VStack, Text, StackDivider, Spacer, Accordion,
+import {Box, HStack, VStack, StackDivider, Spacer, Accordion,
     AccordionItem,
     AccordionButton,
     AccordionPanel,
     AccordionIcon,
     Heading,
     Badge} from '@chakra-ui/react'
-import {MdExpandMore} from 'react-icons/md'
+    
 import Merah from './Merah'
 import TanggalFormat from './TanggalFormat'
 import Status from './Status'

@@ -1,5 +1,5 @@
 import React from 'react'
-import {HStack, Box, Image, Container, Heading, Button} from '@chakra-ui/react'
+import { Box, Image, Container, Heading, Button} from '@chakra-ui/react'
 import home from '../assets/homephoto.png'
 import {Link } from "react-router-dom";
 
@@ -14,18 +14,11 @@ function Tryit() {
                         <Box mr="0" >
                             <Heading as="h1" size="4xl">
                                 <Box fontWeight="black">
-                                    Selamat Datang !
+                                    Welcome !
                                 </Box>
                             </Heading>
                             <Box mt="6" fontWeight="medium">
-                                Sekali lagi maafkanlah
-                                Karena aku cinta kau dan dia
-                                Maafkanlah ku tak bisa
-                                Tinggalkan dirinya
-                                Simpan sisa sisa cerita cinta berdua (hu)
-                                Walau tak tercipta cerita cinta berdua (hu)
-                                Still I have in my eyes
-                                Still I have forever
+                                DNA Test is a web application that provides a platform for users to analyze the presence of a disease based on DNA Sequences. Methodology used by this DNA Test Web implements Knuth-Morris-Pratt algorithm, Bayer-Moore algorithm, Levenshtein algorithm, brute force algorithm, and regular expression algorithm. 
                             </Box>
                             <Link to="/DNAtest">
                             <Button mt = "5" color="moon" ml = '45%'>

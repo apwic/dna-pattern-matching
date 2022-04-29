@@ -1,4 +1,4 @@
-import { useToast, Button, FormControl,Input, Box, Flex, Spacer, Heading, Image, position, VStack, HStack, Badge } from "@chakra-ui/react";
+import { useToast, Button, FormControl,Input, Box, Flex, Image, VStack, HStack, Badge } from "@chakra-ui/react";
 import React, { useState, useEffect } from "react";
 import './DNATest.css'
 import apiClient from "../../http-common.js";

@@ -1,11 +1,9 @@
-import { useToast, Box, Flex, Heading, Image, Button, FormControl, VStack, Select, Input, Stack, RadioGroup, Radio, Badge} from "@chakra-ui/react";
+import { useToast, Box, Flex, Image, Button, FormControl, VStack, Select, Input, RadioGroup, Radio, Badge} from "@chakra-ui/react";
 import React, {useEffect, useState} from "react";
 import './DNATest.css'
-import DNAForm from "./DNAForm";
 import Information from "../../components/Information";
 import Result from "../../components/Result";
 import dnatest from '../../assets/dnatest.png';
-// import NyobaInput from './NyobaInput.js';
 import apiClient from "../../http-common.js";
 import { useRef } from "react";
 import * as FaIcons from 'react-icons/fa';

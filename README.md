@@ -1,7 +1,6 @@
 # DNA Test
 ---
-> Web-based application that provides a platform for users to analyze the presence of a disease based on DNA Sequences.
-> Live demo [_here_](https://www.example.com). <!-- If you have the project hosted somewhere, include the link here. -->
+> Tugas Besar 3 Mata Kuliah IF2211 Strategi Algoritma ITB.
 
 ## Table of Contents
 - [# DNA Test](#-dna-test)
@@ -20,7 +19,7 @@
 
 
 ## General Information
-> DNA Test is a web application that provides a platform for users to analyze the presence of a disease based on DNA Sequences. Methodology used by this DNA Test Web implements Knuth-Morris-Pratt algorithm, Bayer-Moore algorithm, Levenshtein algorithm, brute force algorithm, and regular expression algorithm. 
+> DNA Test is a web application that provides a platform for users to analyze the presence of a disease based on DNA Sequences. Methodology used by this DNA Test Web implements Knuth-Morris-Pratt algorithm, Bayer-Moore algorithm, Levenshtein algorithm, Brute-force algorithm, and Regular Expression algorithm. 
 
 ## Creator
 | Name | NIM |
@@ -34,46 +33,40 @@
 - Add a new disease
 - Look for search history
 
-
 ## Technologies Used
-- Tech 1 - version 1.0
-- Tech 2 - version 2.0
-- Tech 3 - version 3.0
-
+- Node.js
+- MySQL
+- React (Chakra)
+- ExpressJS
 
 ## Screenshots
 ![Example screenshot](./img/screenshot.png)
 <!-- If you have screenshots you'd like to share, include them here. -->
 
-
 ## Setup
-What are the project requirements/dependencies? Where are they listed? A requirements.txt or a Pipfile.lock file perhaps? Where is it located?
-
-Proceed to describe how to install / setup one's local environment / get started with the project.
-
+- Clone this repository
+- Setup node modules using npm. Follow this command:
+```
+cd src
+npm install
+cd src/client
+npm install
+```
+- Configure your MySQL username and password in `src/config/db.config.js`.
+- Create database `tehbotolsourcecode` in your MySQL. 
+- Open MySQL, use database `tehbotolsourcecode` and copy paste command in in `src/config/db.txt` .
 
 ## Usage
-How does one go about using it?
-Provide various use cases and code examples here.
-
-`write-your-code-here`
+- To run the web server concurrently `npm run dev` in src.
 
 
 ## Project Status
-Project is: _in progress_ / _complete_ / _no longer being worked on_. If you are no longer working on it, provide reasons why.
-
-
-## Room for Improvement
-Include areas you believe need improvement / could be improved. Also add TODOs for future development.
-
-Room for improvement:
-- Improvement to be done 1
-- Improvement to be done 2
-
-To do:
-- Feature to be added 1
-- Feature to be added 2
-
+| Task | Status |
+| ---  | --- |
+|Kebenaran program  | Complete 
+|Pemahaman terhadap cara kerja program | Complete
+|Interface, Features, dan Unsur Kreativitas | Complete
+|Membuat fitur tingkat kemiripan DNA pengguna dengan DNA penyakit | Complete
 
 ## Acknowledgements
 This project was made in order to fulfill the 3rd **Tugas Besar Mata Kuliah IF2211 Strategi Algoritma** from **Institut Teknologi Bandung**.

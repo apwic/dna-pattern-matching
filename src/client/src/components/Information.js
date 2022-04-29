@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React from "react";
 import { Box, Text } from "@chakra-ui/react";
 import "./Information.css"
 import * as FaIcons from 'react-icons/fa';

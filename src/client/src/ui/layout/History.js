@@ -1,4 +1,4 @@
-import { Text, FormHelperText, Image, Flex ,Box, Heading, VStack, Button, HStack, Input , FormControl, Badge} from "@chakra-ui/react";
+import { Text,  Image, Flex ,Box,  VStack, Button, HStack, Input , FormControl, Badge} from "@chakra-ui/react";
 import React from "react";
 import { useState, useEffect } from 'react';
 import HistoryStack from '../../components/HistoryStack';
@@ -60,28 +60,12 @@ function HistoryPage(){
 
   const validate = (values) => {
     const errors = {};
-    if (!values.search) {
+    if (!values.search ) {
         errors.search = "Input The Keyword First!";
     }
     return errors;
   }
-  async function getInitialHistory()
-  {
-    try{
-      let response;
-        response = await apiClient.get('history/get-all-tes-dna');
-      const result = {
-        status: response.status,
-        headers: response.headers,
-        data: response.data
-      };
-      console.log(result);
-      setHistory(result.data);
-    }
-    catch {}
-  };
 
-  
   return (
     console.log(history),
     <VStack p={4 }align="center" justify="center" ml = '5vw'>
